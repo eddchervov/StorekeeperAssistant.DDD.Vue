@@ -2,8 +2,8 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using StorekeeperAssistant.Domain.InventoryItemAggregate;
 using StorekeeperAssistant.Domain.MovingAggregate;
+using StorekeeperAssistant.Domain.MovingAggregate.WarehouseInventoryItems;
 using StorekeeperAssistant.Domain.WarehouseAggregate;
-using StorekeeperAssistant.Domain.WarehouseInventoryItemAggregate;
 
 namespace StorekeeperAssistant.DataAccess.EntityConfigurations
 {
@@ -21,7 +21,11 @@ namespace StorekeeperAssistant.DataAccess.EntityConfigurations
                 i => new WarehouseInventoryItemId(i)
                 );
 
-            builder.Property(b => b.Count).HasColumnName("Count");
+            builder.OwnsOne(p => p.Count, p =>
+            {
+                p.Property(pv => pv.Value).HasColumnName("Count");
+            })
+            .Navigation(x => x.Count).IsRequired();
 
             builder.Property(b => b.Date).HasColumnName("Date");
 

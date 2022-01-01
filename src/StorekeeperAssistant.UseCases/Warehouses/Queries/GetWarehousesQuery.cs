@@ -3,7 +3,5 @@ using System.Collections.Generic;
 
 namespace StorekeeperAssistant.UseCases.Warehouses.Queries
 {
-    public class GetWarehousesQuery : IRequest<IEnumerable<WarehouseDto>>
-    {
-    }
+    public record GetWarehousesQuery(): IRequest<IEnumerable<WarehouseDto>>;
 }

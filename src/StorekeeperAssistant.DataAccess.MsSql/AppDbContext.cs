@@ -2,8 +2,10 @@
 using StorekeeperAssistant.DataAccess.EntityConfigurations;
 using StorekeeperAssistant.Domain.InventoryItemAggregate;
 using StorekeeperAssistant.Domain.MovingAggregate;
+using StorekeeperAssistant.Domain.MovingAggregate.WarehouseInventoryItems;
 using StorekeeperAssistant.Domain.WarehouseAggregate;
-using StorekeeperAssistant.Domain.WarehouseInventoryItemAggregate;
+using System;
+using System.Collections.Generic;
 
 namespace StorekeeperAssistant.DataAccess
 {
@@ -20,6 +22,11 @@ namespace StorekeeperAssistant.DataAccess
         public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options)
         {
+        }
+
+        internal IEnumerable<object> OrderByDescending(Func<object, object> p)
+        {
+            throw new NotImplementedException();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

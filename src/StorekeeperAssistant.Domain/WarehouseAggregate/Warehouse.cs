@@ -1,6 +1,8 @@
-﻿namespace StorekeeperAssistant.Domain.WarehouseAggregate
+﻿using BuildingBlocks.Domain;
+
+namespace StorekeeperAssistant.Domain.WarehouseAggregate
 {
-    public class Warehouse
+    public class Warehouse : Entity, IAggregateRoot
     {
 #nullable disable
         Warehouse() { }
@@ -12,9 +14,9 @@
             Name = name;
         }
 
-        public WarehouseId Id { get; private set; }
-        public WarehouseName Name { get; private set; }
+        public WarehouseId Id { get; }
+        public WarehouseName Name { get; }
 
-        public bool IsDeleted { get; private set; }
+        public bool IsDeleted { get; }
     }
 }

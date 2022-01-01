@@ -10,7 +10,7 @@ namespace BuildingBlocks.Domain
         {
             if(value == Guid.Empty)
             {
-                throw new ArgumentNullException("Id value cannot be empty!");
+                throw new ArgumentNullException("Id value cannot be default!");
             }
 
             Value = value;
@@ -41,11 +41,11 @@ namespace BuildingBlocks.Domain
             return Value == other.Value;
         }
 
-        public static bool operator ==(EntityId obj1, EntityId obj2)
+        public static bool operator ==(EntityId? obj1, EntityId? obj2)
         {
-            if (Equals(obj1, null))
+            if (object.Equals(obj1, null))
             {
-                if (Equals(obj2, null))
+                if (object.Equals(obj2, null))
                 {
                     return true;
                 }
@@ -56,7 +56,7 @@ namespace BuildingBlocks.Domain
             return obj1.Equals(obj2);
         }
 
-        public static bool operator !=(EntityId x, EntityId y)
+        public static bool operator !=(EntityId? x, EntityId? y)
         {
             return !(x == y);
         }

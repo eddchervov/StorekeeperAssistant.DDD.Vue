@@ -3,7 +3,5 @@ using System.Collections.Generic;
 
 namespace StorekeeperAssistant.UseCases.InventoryItems.Queries.GetInventoryItems
 {
-    public class GetInventoryItemsQuery : IRequest<IEnumerable<InventoryItemDto>>
-    {
-    }
+    public record GetInventoryItemsQuery(): IRequest<IEnumerable<InventoryItemDto>>;
 }

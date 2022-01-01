@@ -1,7 +1,7 @@
 ﻿using BuildingBlocks.Domain;
 using System;
 
-namespace StorekeeperAssistant.Domain.MovingAggregate
+namespace StorekeeperAssistant.Domain.MovingAggregate.MovingDetails
 {
     public class MovingDetailId : EntityId
     {

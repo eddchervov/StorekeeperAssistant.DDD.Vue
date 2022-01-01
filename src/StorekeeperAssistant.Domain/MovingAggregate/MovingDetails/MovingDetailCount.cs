@@ -2,11 +2,11 @@
 using System;
 using System.Collections.Generic;
 
-namespace StorekeeperAssistant.Domain.MovingAggregate
+namespace StorekeeperAssistant.Domain.MovingAggregate.MovingDetails
 {
     public class MovingDetailCount : ValueObject
     {
-        public int Count { get; }
+        public int Value { get; }
 
         private MovingDetailCount()
         {
@@ -15,15 +15,15 @@ namespace StorekeeperAssistant.Domain.MovingAggregate
 
         public MovingDetailCount(int count)
         {
-            if (count < 0)
-                throw new ArgumentException("MovingDetail can`t be less then 0!", nameof(count));
+            if (count < 1)
+                throw new ArgumentException("MovingDetail can`t be less then 1!", nameof(count));
 
-            Count = count;
+            Value = count;
         }
 
         protected override IEnumerable<object> GetEqualityComponents()
         {
-            yield return Count;
+            yield return Value;
         }
     }
 }

@@ -1,6 +1,8 @@
-﻿namespace StorekeeperAssistant.Domain.InventoryItemAggregate
+﻿using BuildingBlocks.Domain;
+
+namespace StorekeeperAssistant.Domain.InventoryItemAggregate
 {
-    public class InventoryItem
+    public class InventoryItem : Entity, IAggregateRoot
     {
 #nullable disable
         InventoryItem() { }
@@ -12,9 +14,9 @@
             Name = name;
         }
 
-        public InventoryItemId Id { get; private set; }
-        public InventoryItemName Name { get; private set; }
+        public InventoryItemId Id { get; }
+        public InventoryItemName Name { get; }
 
-        public bool IsDeleted { get; private set; }
+        public bool IsDeleted { get; }
     }
 }

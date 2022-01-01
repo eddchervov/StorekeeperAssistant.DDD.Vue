@@ -1,0 +1,4 @@
+ add to manage user secrets
+ {
+   "StorekeeperAssistant:ConnectionString": "Server=(localdb)\\MSSQLLocalDB;Database=StorekeeperAssistant_DB;Trusted_Connection=True;MultipleActiveResultSets=true"
+ }

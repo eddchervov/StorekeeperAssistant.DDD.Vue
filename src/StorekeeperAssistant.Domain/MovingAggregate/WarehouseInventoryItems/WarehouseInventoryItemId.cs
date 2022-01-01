@@ -1,7 +1,7 @@
 ﻿using BuildingBlocks.Domain;
 using System;
 
-namespace StorekeeperAssistant.Domain.WarehouseInventoryItemAggregate
+namespace StorekeeperAssistant.Domain.MovingAggregate.WarehouseInventoryItems
 {
     public class WarehouseInventoryItemId : EntityId
     {

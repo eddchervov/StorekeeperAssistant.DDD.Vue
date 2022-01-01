@@ -2,7 +2,7 @@
 
 namespace StorekeeperAssistant.UseCases.Movings.Queries.GetMovings
 {
-    public class WarehouseDto
+    public class GetMovingsWarehouseDto
     {
         public Guid Id { get; set; }
         public string Name { get; set; } = default!;

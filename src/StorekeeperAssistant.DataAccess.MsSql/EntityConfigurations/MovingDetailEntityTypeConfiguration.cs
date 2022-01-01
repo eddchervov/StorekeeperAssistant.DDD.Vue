@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using StorekeeperAssistant.Domain.InventoryItemAggregate;
 using StorekeeperAssistant.Domain.MovingAggregate;
+using StorekeeperAssistant.Domain.MovingAggregate.MovingDetails;
 
 namespace StorekeeperAssistant.DataAccess.EntityConfigurations
 {
@@ -21,7 +22,7 @@ namespace StorekeeperAssistant.DataAccess.EntityConfigurations
 
             builder.OwnsOne(p => p.Count, p =>
             {
-                p.Property(pv => pv.Count).HasColumnName("Count");
+                p.Property(pv => pv.Value).HasColumnName("Count");
             })
             .Navigation(x => x.Count).IsRequired();
 

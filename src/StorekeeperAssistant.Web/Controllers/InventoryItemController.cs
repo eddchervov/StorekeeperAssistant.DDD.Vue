@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using StorekeeperAssistant.UseCases;
 using StorekeeperAssistant.UseCases.InventoryItems.Queries.GetInventoryItems;
 using System.Collections.Generic;
 using System.Threading.Tasks;

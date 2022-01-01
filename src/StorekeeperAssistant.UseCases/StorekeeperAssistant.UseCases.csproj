@@ -12,12 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BuildingBlocks.UseCases\BuildingBlocks.UseCases.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Movings\Commands\Create\" />
-    <Folder Include="WarehouseInventoryItems\Commands\" />
-    <Folder Include="WarehouseInventoryItems\Queries\GetWarehouseInventoryItems\" />
+    <ProjectReference Include="..\StorekeeperAssistant.Domain\StorekeeperAssistant.Domain.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace StorekeeperAssistant.UseCases.InventoryItems.Queries.GetInventoryItems
+namespace StorekeeperAssistant.UseCases
 {
     public class InventoryItemDto
     {

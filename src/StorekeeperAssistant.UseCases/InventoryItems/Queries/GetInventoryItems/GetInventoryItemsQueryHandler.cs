@@ -25,11 +25,11 @@ namespace StorekeeperAssistant.UseCases.InventoryItems.Queries.GetInventoryItems
                 "[Id], " +
                 "[Name] " +
                 "FROM [InventoryItems] " +
-                "WHERE [IsDeleted] = @isDeleted " +
+                "WHERE [IsDeleted] = @IsDeleted " +
                 "ORDER BY [Name]",
                 new
                 {
-                    isDeleted = false
+                    IsDeleted = false
                 });
         }
     }

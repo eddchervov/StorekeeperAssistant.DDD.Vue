@@ -9,6 +9,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using StorekeeperAssistant.DataAccess;
+using StorekeeperAssistant.DataAccess.Repositories;
+using StorekeeperAssistant.UseCases.Interfaces;
 using StorekeeperAssistant.UseCases.InventoryItems.Queries.GetInventoryItems;
 using System.Reflection;
 
@@ -21,6 +23,8 @@ namespace StorekeeperAssistant.Web
             Configuration = configuration;
         }
 
+        const string ConfigurationKey = "StorekeeperAssistant:ConnectionString";
+
         public IConfiguration Configuration { get; }
 
         public void ConfigureServices(IServiceCollection services)
@@ -32,11 +36,11 @@ namespace StorekeeperAssistant.Web
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "StorekeeperAssistant.Web", Version = "v1" });
             });
 
-            services.AddScoped<ISqlConnectionFactory>(x => new SqlConnectionFactory(Configuration["StorekeeperAssistant:ConnectionString"]));
+            services.AddScoped<ISqlConnectionFactory>(x => new SqlConnectionFactory(Configuration[ConfigurationKey]));
 
             services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(
-                Configuration["StorekeeperAssistant:ConnectionString"]
+                Configuration[ConfigurationKey]
                 ,
                 sqlServerOptionsAction: sqlOptions =>
                 {
@@ -44,6 +48,11 @@ namespace StorekeeperAssistant.Web
                 }));
 
             services.AddMediatR(typeof(GetInventoryItemsQueryHandler));
+
+            services.AddScoped<IMovingRepository, MovingRepository>();
+            services.AddScoped<IWarehouseRepository, WarehouseRepository>();
+            services.AddScoped<IWarehouseInventoryItemRepository, WarehouseInventoryItemRepository>();
+            services.AddScoped<IInventoryItemRepository, InventoryItemRepository>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

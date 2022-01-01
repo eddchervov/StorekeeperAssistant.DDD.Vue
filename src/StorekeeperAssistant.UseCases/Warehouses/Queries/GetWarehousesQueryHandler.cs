@@ -25,11 +25,11 @@ namespace StorekeeperAssistant.UseCases.Warehouses.Queries
                 "[Id], " +
                 "[Name] " +
                 "FROM [Warehouses] " +
-                "WHERE [IsDeleted] = @isDeleted " +
+                "WHERE [IsDeleted] = @IsDeleted " +
                 "ORDER BY [Name]",
                 new
                 {
-                    isDeleted = false
+                    IsDeleted = false
                 });
         }
     }
