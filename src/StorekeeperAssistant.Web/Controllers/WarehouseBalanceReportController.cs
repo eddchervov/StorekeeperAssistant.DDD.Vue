@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using StorekeeperAssistant.UseCases.Movings.Queries.GetWarehouseBalanceReport;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace StorekeeperAssistant.Web.Controllers
@@ -19,10 +18,10 @@ namespace StorekeeperAssistant.Web.Controllers
             _sender = sender;
         }
 
-        [HttpGet("{warehouseId}")]
-        public async Task<IEnumerable<WarehouseInventoryItemDto>> Get([FromRoute] Guid warehouseId)
+        [HttpGet("{warehouseId}/{maxDateTime}")]
+        public async Task<IEnumerable<WarehouseInventoryItemDto>> Get([FromRoute] Guid warehouseId, DateTime? maxDateTime)
         {
-            return await _sender.Send(new GetWarehouseBalanceReportQuery(warehouseId, DateTime.UtcNow));
+            return await _sender.Send(new GetWarehouseBalanceReportQuery(warehouseId, maxDateTime ?? DateTime.UtcNow));
         }
     }
 }

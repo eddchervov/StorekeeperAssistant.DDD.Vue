@@ -54,7 +54,7 @@ namespace StorekeeperAssistant.UseCases.Movings.Queries.GetWarehouseBalanceRepor
                 " wii.[Id], wii.[Date], wii.[Count], wii.[InventoryItemId], ii.[Name], wii.[WarehouseId] " +
                 " FROM [dbo].[WarehouseInventoryItems] AS wii " +
                 " LEFT JOIN [dbo].[InventoryItems] AS ii ON wii.[InventoryItemId] = ii.[Id] " +
-                " WHERE wii.[WarehouseId] = @WarehouseId and wii.[InventoryItemId] = @InventoryItemID " +
+                " WHERE wii.[WarehouseId] = @WarehouseId AND wii.[Date] <= @DateTime AND wii.[InventoryItemId] = @InventoryItemID " +
                 " ORDER BY wii.[Date] DESC " +
 
                 " DELETE #TempInventoryItems " +
@@ -67,7 +67,8 @@ namespace StorekeeperAssistant.UseCases.Movings.Queries.GetWarehouseBalanceRepor
                 " SELECT * FROM #WarehouseBalanceReportRows ",
                 new
                 {
-                    request.WarehouseId
+                    request.WarehouseId,
+                    request.DateTime
                 });
 
             return MapToDto(rows);
