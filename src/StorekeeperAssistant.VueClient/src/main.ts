@@ -1,6 +1,24 @@
-import { createApp } from 'vue'
-import App from './App.vue'
-import router from './router'
-import store from './store'
+import Vue from "vue";
+import App from "./App.vue";
+import router from "./router";
+import store from "./store";
 
-createApp(App).use(store).use(router).mount('#app')
+Vue.config.productionTip = false;
+
+import vSelect from "vue-select";
+import "vue-select/dist/vue-select.css";
+Vue.component("VSelect", vSelect);
+
+import VueCtkDateTimePicker from 'vue-ctk-date-time-picker';
+import 'vue-ctk-date-time-picker/dist/vue-ctk-date-time-picker.css';
+Vue.component('VueCtkDateTimePicker', VueCtkDateTimePicker);
+
+
+import "bootstrap/dist/css/bootstrap.min.css"
+import "bootstrap"
+
+new Vue({
+  router,
+  store,
+  render: (h) => h(App),
+}).$mount("#app");

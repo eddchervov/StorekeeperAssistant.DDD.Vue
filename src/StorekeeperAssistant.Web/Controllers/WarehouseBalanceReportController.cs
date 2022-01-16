@@ -18,7 +18,7 @@ namespace StorekeeperAssistant.Web.Controllers
             _sender = sender;
         }
 
-        [HttpGet("{warehouseId}/{maxDateTime}")]
+        [HttpGet("{warehouseId}/{maxDateTime?}")]
         public async Task<IEnumerable<WarehouseInventoryItemDto>> Get([FromRoute] Guid warehouseId, DateTime? maxDateTime)
         {
             return await _sender.Send(new GetWarehouseBalanceReportQuery(warehouseId, maxDateTime ?? DateTime.UtcNow));

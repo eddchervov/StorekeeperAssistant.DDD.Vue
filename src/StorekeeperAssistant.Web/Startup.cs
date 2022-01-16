@@ -36,6 +36,15 @@ namespace StorekeeperAssistant.Web
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "StorekeeperAssistant.Web", Version = "v1" });
             });
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder => builder.AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .SetIsOriginAllowed(origin => true) // allow any origin
+                        .AllowAnyHeader());
+            });
+
             services.AddScoped<ISqlConnectionFactory>(x => new SqlConnectionFactory(Configuration[ConfigurationKey]));
 
             services.AddDbContext<AppDbContext>(options =>
@@ -63,6 +72,8 @@ namespace StorekeeperAssistant.Web
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "StorekeeperAssistant.Web v1"));
             }
+
+            app.UseCors("CorsPolicy");
 
             app.UseRouting();
 
