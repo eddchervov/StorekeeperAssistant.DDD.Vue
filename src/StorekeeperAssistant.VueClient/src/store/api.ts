@@ -12,6 +12,11 @@ export default {
   GetInventoryItems: serverPath + "/inventory-items/get",
 
   /**
+   * Получить перемещения
+   */
+  GetMovings: serverPath + "api/movings",
+
+  /**
    * Получить остатки склада
    */
   GetWarehouseBalanceReport: serverPath + "api/warehouse-balance-report",

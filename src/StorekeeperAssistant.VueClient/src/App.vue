@@ -1,9 +1,9 @@
-
 <template>
   <div id="app">
     <div id="nav" class="text-center">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link> |
+      <router-link to="/move-list">Список перемещений | </router-link>
       <router-link to="/warehouse-balance-report">
         Отчет остатков склада
       </router-link>

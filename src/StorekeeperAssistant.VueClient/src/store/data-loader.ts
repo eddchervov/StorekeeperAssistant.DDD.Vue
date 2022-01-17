@@ -27,3 +27,18 @@ export async function getWarehouseBalanceReport(
       commit(mutations.setError, { msg: e });
     });
 }
+
+export async function getMovings(
+  commit: Commit,
+  skipCount: number,
+  takeCount: number
+) {
+  await client
+    .getMovings(skipCount, takeCount)
+    .then((p) => {
+      commit(mutations.setMovings, p.data);
+    })
+    .catch((e) => {
+      commit(mutations.setError, { msg: e });
+    });
+}

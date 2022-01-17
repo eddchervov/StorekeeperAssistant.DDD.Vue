@@ -23,6 +23,11 @@ const routes: Array<RouteConfig> = [
     path: '/warehouse-balance-report',
     name: 'WarehouseBalanceReport',
     component: () => import('../views/warehouse-balance-reports/WarehouseBalanceReport.vue')
+  },
+  {
+    path: '/move-list',
+    name: 'MoveList',
+    component: () => import('../views/move-list/MoveList.vue')
   }
 ];
 

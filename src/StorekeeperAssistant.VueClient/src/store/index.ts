@@ -1,9 +1,14 @@
+import { MovingDto } from "@/models/dto/moving-dto";
 import { WarehouseDto } from "@/models/dto/warehouse-dto";
 import { WarehouseInventoryItemDto } from "@/models/dto/warehouse-inventory-item-dto";
 import Vue from "vue";
 import Vuex from "vuex";
 import api from "./api";
-import { loadWarehouses, getWarehouseBalanceReport } from "./data-loader";
+import {
+  loadWarehouses,
+  getWarehouseBalanceReport,
+  getMovings,
+} from "./data-loader";
 import mutations from "./mutations";
 
 Vue.use(Vuex);
@@ -16,11 +21,16 @@ export default new Vuex.Store({
 
     warehouseInventoryItems: new Array<WarehouseInventoryItemDto>(),
 
-    serverErrors: new Array<string>(),
+    movingsTotalCount: 0,
+    movings: new Array<MovingDto>(),
+
+    serverErrors: new Array<string>()
   },
   getters: {
     warehouses: (state) => state.warehouses,
     warehouseInventoryItems: (state) => state.warehouseInventoryItems,
+    movingsTotalCount: (state) => state.movingsTotalCount,
+    movings: (state) => state.movings,
   },
   mutations: {
     [mutations.setWarehouses]: (state, value) => {
@@ -30,6 +40,10 @@ export default new Vuex.Store({
     },
     [mutations.setWarehouseInventoryItems]: (state, value) => {
       state.warehouseInventoryItems = value;
+    },
+    [mutations.setMovings]: (state, value) => {
+      state.movingsTotalCount = value.totalCount;
+      state.movings = value.movings;
     },
     [mutations.setError]: (state, { msg }) => {
       if (state.serverErrors.length > 2) state.serverErrors.splice(0, 1);
@@ -46,6 +60,9 @@ export default new Vuex.Store({
     },
     async [api.GetWarehouseBalanceReport]({ commit }, { warehouseId, date }) {
       await getWarehouseBalanceReport(commit, warehouseId, date);
+    },
+    async [api.GetMovings]({ commit }, { skipCount, takeCount }) {
+      await getMovings(commit, skipCount, takeCount);
     },
   },
   modules: {},
