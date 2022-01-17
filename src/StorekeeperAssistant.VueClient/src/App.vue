@@ -3,6 +3,7 @@
     <div id="nav" class="text-center">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link> |
+      <router-link to="/create-move">Создать перемещениe | </router-link>
       <router-link to="/move-list">Список перемещений | </router-link>
       <router-link to="/warehouse-balance-report">
         Отчет остатков склада
@@ -49,14 +50,17 @@ import api from "./store/api";
   computed: {
     ...mapActions({
       someLoadGetWarehousesAction: api.GetWarehouses,
+      someLoadGetInventoryItemsAction: api.GetInventoryItems,
     }),
   },
 })
 export default class App extends Vue {
   someLoadGetWarehousesAction!: () => any;
+  someLoadGetInventoryItemsAction!: () => any;
 
   mounted(): void {
     this.someLoadGetWarehousesAction;
+    this.someLoadGetInventoryItemsAction;
   }
 }
 </script>

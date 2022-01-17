@@ -9,7 +9,7 @@ export default {
   /**
    * Получить номенклатуры
    */
-  GetInventoryItems: serverPath + "/inventory-items/get",
+  GetInventoryItems: serverPath + "api/inventory-items",
 
   /**
    * Получить перемещения
@@ -17,9 +17,14 @@ export default {
   GetMovings: serverPath + "api/movings",
 
   /**
-   * Получить остатки склада
+   * Получить отчет остатков склада
    */
   GetWarehouseBalanceReport: serverPath + "api/warehouse-balance-report",
+
+  /**
+   * Получить остатки склада
+   */
+  WarehouseInventoryItems: serverPath + "api/warehouse-balance-report",
 
   /**
    * Создать перемещение

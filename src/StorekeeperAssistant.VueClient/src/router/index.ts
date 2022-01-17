@@ -20,15 +20,21 @@ const routes: Array<RouteConfig> = [
       import(/* webpackChunkName: "about" */ "../views/About.vue"),
   },
   {
-    path: '/warehouse-balance-report',
-    name: 'WarehouseBalanceReport',
-    component: () => import('../views/warehouse-balance-reports/WarehouseBalanceReport.vue')
+    path: "/warehouse-balance-report",
+    name: "WarehouseBalanceReport",
+    component: () =>
+      import("../views/warehouse-balance-reports/WarehouseBalanceReport.vue"),
   },
   {
-    path: '/move-list',
-    name: 'MoveList',
-    component: () => import('../views/move-list/MoveList.vue')
-  }
+    path: "/move-list",
+    name: "MoveList",
+    component: () => import("../views/move-list/MoveList.vue"),
+  },
+  {
+    path: "/create-move",
+    name: "CreateMove",
+    component: () => import("../views/create-move/CreateMove.vue"),
+  },
 ];
 
 const router = new VueRouter({
