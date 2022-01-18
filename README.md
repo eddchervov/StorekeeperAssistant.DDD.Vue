@@ -30,5 +30,5 @@
     <a target="_blank" href="https://github.com/lokyoung/vuejs-paginate">vuejs-paginate</a>).
   </li>
   <li><b>База данных: </b> MsSql</li>
-  <li><b>ORM: </b> Entity Framework Core, Dapper</li>
+  <li><b>ORM: </b> Entity Framework Core 5, Dapper</li>
 </ul>
