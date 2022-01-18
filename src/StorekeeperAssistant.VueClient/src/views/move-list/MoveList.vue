@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h4>Список перемещений</h4>
+    <h4>Список перемещений ({{ totalCount }})</h4>
     <hr class="mb-4" />
 
     <template v-if="isMovingAndIsLoadForm">
@@ -13,7 +13,8 @@
           <div class="card">
             <div class="card-body">
               <h6 class="card-title mb-3">
-                <span class="fw-550">Дата:</span> {{ moving.transferDate | toLocalFormat }}
+                <span class="fw-550">Дата:</span>
+                {{ moving.transferDate | toLocalFormat }}
               </h6>
               <h6 class="card-subtitle mb-2 fw-550">
                 <template v-if="moving.departureWarehouse">
@@ -36,16 +37,17 @@
                   {{ movingDetail.count }} шт.
                 </p>
               </div>
-              <img
-                class="del-btn"
-                src="trash.png"
-                @click="deleteMovings(moving.id)"
-              />
             </div>
           </div>
         </div>
       </div>
     </template>
+
+    <Paging
+      v-show="isMovingAndIsLoadForm"
+      @click-handler="getMovings"
+      :totalCount="totalCount"
+    />
 
     <template v-if="isLoadForm">
       <div class="row">
@@ -66,8 +68,9 @@
 </template>
 
 <script lang="ts">
+import Paging from "@/components/Paging.vue";
 import { MovingDto } from "@/models/dto/moving-dto";
-import api from "@/store/api";
+import actions from "@/store/actions";
 import moment from "moment";
 import { Component, Vue } from "vue-property-decorator";
 
@@ -78,9 +81,16 @@ import { Component, Vue } from "vue-property-decorator";
       return moment(stillUtc).local().format("DD.MM.YYYY HH:mm:ss");
     },
   },
+  components: {
+    Paging,
+  },
 })
 export default class MoveList extends Vue {
   isLoadForm: boolean | null = null;
+
+  get totalCount(): number {
+    return this.$store.getters.movingsTotalCount;
+  }
 
   get movings(): Array<MovingDto> {
     return this.$store.getters.movings;
@@ -93,13 +103,9 @@ export default class MoveList extends Vue {
     return this.movings.length == 0 && this.isLoadForm == false;
   }
 
-  deleteMovings(movingId: string): void {
-    return;
-  }
-
   async getMovings(skipCount = 0, takeCount = 20): Promise<void> {
     this.isLoadForm = true;
-    await this.$store.dispatch(api.GetMovings, {
+    await this.$store.dispatch(actions.GetMovings, {
       skipCount,
       takeCount,
     });

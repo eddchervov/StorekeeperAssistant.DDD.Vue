@@ -22,10 +22,10 @@ import mutations from "@/store/mutations";
 import { Component, Vue } from "vue-property-decorator";
 @Component({})
 export default class SelectOperation extends Vue {
-  get selectOperation() {
+  get selectOperation(): number | null {
     return this.$store.getters.selectOperation;
   }
-  set selectOperation(value) {
+  set selectOperation(value: number | null) {
     this.$store.commit(mutations.changeSelectOperation, value);
   }
 }

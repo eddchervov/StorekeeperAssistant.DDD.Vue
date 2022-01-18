@@ -22,6 +22,7 @@ namespace StorekeeperAssistant.UseCases.Movings.Queries.GetMovings
             var db = _sqlConnectionFactory.GetOpenConnection();
 
             var multiple = await db.QueryMultipleAsync(
+                sql:
                 "  SELECT COUNT(*) FROM [dbo].[Movings] " +
                 "  SELECT " +
                 "       m.[Id]                  AS MovindId, " +
@@ -34,16 +35,19 @@ namespace StorekeeperAssistant.UseCases.Movings.Queries.GetMovings
                 "       md.[InventoryItemId]    AS MovingDetailInventoryItemId, " +
                 "       md.[Count]              AS MovingDetailCount, " +
                 "       ii.[Name]               AS MovingDetailInventoryItemName " +
-                "  FROM [dbo].[Movings] as m " +
+                "  FROM ( " +
+                "       SELECT mv.[Id], mv.[TransferDate], mv.[DepartureWarehouseId], mv.[ArrivalWarehouseId] " +
+                "       FROM [dbo].[Movings] AS mv " +
+                "       WHERE mv.[IsDeleted] = @IsDeleted " +
+                "       ORDER BY mv.[TransferDate] DESC " +
+                "       OFFSET @SkipCount ROWS " +
+                "       FETCH NEXT @TakeCount ROWS ONLY " +
+                "  ) AS m " +
                 "    LEFT JOIN [dbo].[Warehouses]      AS dw ON m.DepartureWarehouseId = dw.Id " +
                 "    LEFT JOIN [dbo].[Warehouses]      AS aw ON m.ArrivalWarehouseId = aw.Id " +
                 "    LEFT JOIN [dbo].[MovingDetails]   AS md ON m.Id = md.MovingId " +
-                "    LEFT JOIN [dbo].[InventoryItems]  AS ii ON md.InventoryItemId = ii.Id " +
-                "  WHERE m.[IsDeleted] = @IsDeleted " +
-                "  ORDER BY m.[TransferDate] DESC " +
-                "  OFFSET @SkipCount ROWS " +
-                "  FETCH NEXT @TakeCount ROWS ONLY",
-                new
+                "    LEFT JOIN [dbo].[InventoryItems]  AS ii ON md.InventoryItemId = ii.Id ",
+                param: new
                 {
                     IsDeleted = false,
                     request.SkipCount,
@@ -63,11 +67,13 @@ namespace StorekeeperAssistant.UseCases.Movings.Queries.GetMovings
             foreach (dynamic row in rows)
             {
                 var movingDto = movingDtos.FirstOrDefault(x => x.Id == row.MovindId);
-                if (movingDto == null) movingDto = CreateMovingDto(row);
+                if (movingDto == null)
+                {
+                    movingDto = CreateMovingDto(row);
+                    movingDtos.Add(movingDto);
+                }
 
                 movingDto.MovingDetails.Add(CreateMovingDetailDto(row));
-
-                movingDtos.Add(movingDto);
             }
 
             return movingDtos;

@@ -1,9 +1,10 @@
 import { InventoryItemVm } from "@/models/view-models/inventory-item-vm";
+import { ValidationVm } from "@/models/view-models/validation-vm";
 import { WarehouseInventoryItemVm } from "@/models/view-models/warehouse-inventory-item-vm";
 
 export function validationMoving(
   departureWarehouseInventoryItems: Array<WarehouseInventoryItemVm>
-) {
+): ValidationVm {
   let countError = 0;
   const messages: Array<string> = [];
   let isNotEmpty = false;
@@ -29,13 +30,13 @@ export function validationMoving(
     isError: countError != 0,
     countError: countError,
     messages: messages,
-  };
+  } as ValidationVm;
 }
 
 export function validationComing(
   inventoryItems: Array<InventoryItemVm>,
   maxValueInventoryItem: number
-) {
+): ValidationVm {
   let countError = 0;
   const messages: Array<string> = [];
   if (inventoryItems.length == 0) {
@@ -65,5 +66,5 @@ export function validationComing(
     isError: countError != 0,
     countError: countError,
     messages: messages,
-  };
+  } as ValidationVm;
 }

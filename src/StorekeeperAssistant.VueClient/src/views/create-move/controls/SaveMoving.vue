@@ -10,7 +10,6 @@
   </div>
 </template>
 
-
 <script lang="ts">
 import { AddInventoryItemDto } from "@/models/dto/add-inventory-item-dto";
 import { AddMovingDto } from "@/models/dto/add-moving-dto";

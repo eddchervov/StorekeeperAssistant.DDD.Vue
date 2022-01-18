@@ -92,9 +92,9 @@
 import { Component, Vue } from "vue-property-decorator";
 import { WarehouseDto } from "@/models/dto/warehouse-dto";
 import moment from "moment";
-import api from "@/store/api";
 import { WarehouseInventoryItemDto } from "@/models/dto/warehouse-inventory-item-dto";
 import mutations from "@/store/mutations";
+import actions from "@/store/actions";
 
 @Component({})
 export default class WarehouseBalanceReport extends Vue {
@@ -131,7 +131,7 @@ export default class WarehouseBalanceReport extends Vue {
       date = date.format("YYYY-MM-DD HH:mm:ss");
     }
     const selectWarehouseId = this.selectWarehouseId;
-    await this.$store.dispatch(api.GetWarehouseBalanceReport, {
+    await this.$store.dispatch(actions.GetWarehouseBalanceReport, {
       warehouseId: selectWarehouseId,
       date: date,
     });

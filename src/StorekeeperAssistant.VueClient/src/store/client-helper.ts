@@ -7,7 +7,7 @@ import { Commit } from "vuex";
 import client from "./client";
 import mutations from "./mutations";
 
-export async function loadInventoryItems(commit: Commit) {
+export async function loadInventoryItems(commit: Commit): Promise<void> {
   client
     .getInventoryItems()
     .then((p) => {
@@ -27,7 +27,7 @@ export async function loadInventoryItems(commit: Commit) {
     });
 }
 
-export async function loadWarehouses(commit: Commit) {
+export async function loadWarehouses(commit: Commit): Promise<void> {
   await client
     .getWarehouses()
     .then((p) => {
@@ -42,7 +42,7 @@ export async function getWarehouseBalanceReport(
   commit: Commit,
   warehouseId: string,
   date: string | null
-) {
+): Promise<void> {
   await client
     .getWarehouseBalanceReport(warehouseId, date)
     .then((p) => {
@@ -57,7 +57,7 @@ export async function getMovings(
   commit: Commit,
   skipCount: number,
   takeCount: number
-) {
+): Promise<void> {
   await client
     .getMovings(skipCount, takeCount)
     .then((p) => {
@@ -68,10 +68,10 @@ export async function getMovings(
     });
 }
 
-export function loadDepartureWarehouseInventoryItems(
+export async function loadDepartureWarehouseInventoryItems(
   commit: Commit,
   warehouseId: string
-) {
+): Promise<void> {
   client
     .getWarehouseBalanceReport(warehouseId, null)
     .then((p) => {
@@ -100,10 +100,13 @@ export function loadDepartureWarehouseInventoryItems(
     });
 }
 
-export function saveMoving(commit: Commit, addMovingDto: AddMovingDto) {
+export async function saveMoving(
+  commit: Commit,
+  addMovingDto: AddMovingDto
+): Promise<void> {
   client
     .createMoving(addMovingDto)
-    .then((p) => {
+    .then(() => {
       commit(mutations.setData, { isCreateMoving: false });
       location.reload();
     })

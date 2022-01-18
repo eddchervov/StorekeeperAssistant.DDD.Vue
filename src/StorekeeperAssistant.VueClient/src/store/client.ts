@@ -18,12 +18,14 @@ export default {
    * Получить перемещения
    */
   getMovings: (skipCount: number, takeCount: number) =>
-    axios.get(api.GetMovings + skipCount + "/" + takeCount),
+    axios.get(api.GetMovings + "/" + skipCount + "/" + takeCount),
   /**
    * Получить остатки склада
    */
   getWarehouseBalanceReport: (warehouseId: string, date: string | null) =>
-    axios.get(api.GetWarehouseBalanceReport + warehouseId + "/" + (date ?? "")),
+    axios.get(
+      api.GetWarehouseBalanceReport + "/" + warehouseId + "/" + (date ?? "")
+    ),
   /**
    * Создать перемещение
    */

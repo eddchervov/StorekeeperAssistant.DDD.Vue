@@ -16,10 +16,9 @@
   </div>
 </template>
 
-
 <script lang="ts">
 import { AddMovingDto } from "@/models/dto/add-moving-dto";
-import api from "@/store/api";
+import actions from "@/store/actions";
 import { Component, Vue } from "vue-property-decorator";
 import SaveComing from "./SaveComing.vue";
 import SaveMoving from "./SaveMoving.vue";
@@ -57,7 +56,7 @@ export default class SaveForm extends Vue {
   }
 
   async saveMoving(addMovingDto: AddMovingDto): Promise<void> {
-    await this.$store.dispatch(api.CreateMoving, addMovingDto);
+    await this.$store.dispatch(actions.CreateMoving, addMovingDto);
   }
 }
 </script>

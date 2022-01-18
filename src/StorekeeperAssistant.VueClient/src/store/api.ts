@@ -14,12 +14,12 @@ export default {
   /**
    * Получить перемещения
    */
-  GetMovings: serverPath + "api/movings/",
+  GetMovings: serverPath + "api/movings",
 
   /**
    * Получить отчет остатков склада
    */
-  GetWarehouseBalanceReport: serverPath + "api/warehouse-balance-report/",
+  GetWarehouseBalanceReport: serverPath + "api/warehouse-balance-report",
 
   /**
    * Получить остатки склада

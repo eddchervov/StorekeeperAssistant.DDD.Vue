@@ -19,7 +19,7 @@
 
 <script lang="ts">
 import { WarehouseDto } from "@/models/dto/warehouse-dto";
-import api from "@/store/api";
+import actions from "@/store/actions";
 import mutations from "@/store/mutations";
 import { Component, Vue } from "vue-property-decorator";
 
@@ -43,7 +43,7 @@ export default class DepartureWarehouse extends Vue {
         mutations.setLoadDepartureWarehouseInventoryItems,
         true
       );
-      this.$store.dispatch(api.WarehouseInventoryItems, { warehouseId });
+      this.$store.dispatch(actions.GetWarehouseInventoryItems, { warehouseId });
     } else warehouses = this.$store.state.warehouses;
 
     this.$store.commit(mutations.setArrivalWarehouses, warehouses);

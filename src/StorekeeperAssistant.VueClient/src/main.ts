@@ -9,13 +9,15 @@ import vSelect from "vue-select";
 import "vue-select/dist/vue-select.css";
 Vue.component("VSelect", vSelect);
 
-import VueCtkDateTimePicker from 'vue-ctk-date-time-picker';
-import 'vue-ctk-date-time-picker/dist/vue-ctk-date-time-picker.css';
-Vue.component('VueCtkDateTimePicker', VueCtkDateTimePicker);
+import VueCtkDateTimePicker from "vue-ctk-date-time-picker";
+import "vue-ctk-date-time-picker/dist/vue-ctk-date-time-picker.css";
+Vue.component("VueCtkDateTimePicker", VueCtkDateTimePicker);
 
+import Paginate from "vuejs-paginate";
+Vue.component("VuePaginate", Paginate);
 
-import "bootstrap/dist/css/bootstrap.min.css"
-import "bootstrap"
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap";
 
 new Vue({
   router,

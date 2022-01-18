@@ -1,5 +1,7 @@
 <template>
   <div id="app">
+    <NotificationToasts />
+
     <div class="container">
       <h5 class="mb-3 mt-1">
         <a href="http://eddcher.ru/">Вернуться на eddcher.ru</a>
@@ -100,14 +102,18 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { mapActions } from "vuex";
-import api from "./store/api";
+import NotificationToasts from "./components/NotificationToasts.vue";
+import actions from "./store/actions";
 
 @Component({
   computed: {
     ...mapActions({
-      someLoadGetWarehousesAction: api.GetWarehouses,
-      someLoadGetInventoryItemsAction: api.GetInventoryItems,
+      someLoadGetWarehousesAction: actions.GetWarehouses,
+      someLoadGetInventoryItemsAction: actions.GetInventoryItems,
     }),
+  },
+  components: {
+    NotificationToasts,
   },
 })
 export default class App extends Vue {

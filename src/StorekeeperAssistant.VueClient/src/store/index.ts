@@ -7,7 +7,7 @@ import { InventoryItemVm } from "@/models/view-models/inventory-item-vm";
 import { WarehouseInventoryItemVm } from "@/models/view-models/warehouse-inventory-item-vm";
 import Vue from "vue";
 import Vuex from "vuex";
-import api from "./api";
+import actions from "./actions";
 import {
   loadInventoryItems,
   loadWarehouses,
@@ -80,6 +80,7 @@ export default new Vuex.Store({
     movings: (state) => state.movings as Array<MovingDto>,
     selectOperation: (state) => state.selectOperation as number | null,
     typeOperations: (state) => state.typeOperations as Array<OptionsDto>,
+    serverErrors: (state) => state.serverErrors as Array<string>,
   },
   mutations: {
     [mutations.setIsCreateMoving]: (state, value) => {
@@ -122,12 +123,13 @@ export default new Vuex.Store({
       state.movings = value.movings;
     },
     [mutations.setError]: (state, { msg }) => {
-      if (state.serverErrors.length > 2) state.serverErrors.splice(0, 1);
-      state.serverErrors.push(msg);
-      setTimeout(() => {
-        const index = state.serverErrors.indexOf(msg);
-        state.serverErrors.splice(index, 1);
-      }, 3000);
+      if (state.serverErrors.indexOf(msg) == -1) {
+        state.serverErrors.push(msg);
+        setTimeout(() => {
+          const index = state.serverErrors.indexOf(msg);
+          state.serverErrors.splice(index, 1);
+        }, 3000);
+      }
     },
     [mutations.changeSelectOperation]: (state, value) => {
       state.selectOperation = value;
@@ -138,22 +140,25 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    async [api.GetInventoryItems]({ commit }) {
+    async [actions.GetInventoryItems]({ commit }) {
       await loadInventoryItems(commit);
     },
-    async [api.GetWarehouses]({ commit }) {
+    async [actions.GetWarehouses]({ commit }) {
       await loadWarehouses(commit);
     },
-    async [api.GetWarehouseBalanceReport]({ commit }, { warehouseId, date }) {
+    async [actions.GetWarehouseBalanceReport](
+      { commit },
+      { warehouseId, date }
+    ) {
       await getWarehouseBalanceReport(commit, warehouseId, date);
     },
-    async [api.WarehouseInventoryItems]({ commit }, { warehouseId }) {
+    async [actions.GetWarehouseInventoryItems]({ commit }, { warehouseId }) {
       await loadDepartureWarehouseInventoryItems(commit, warehouseId);
     },
-    async [api.GetMovings]({ commit }, { skipCount, takeCount }) {
+    async [actions.GetMovings]({ commit }, { skipCount, takeCount }) {
       await getMovings(commit, skipCount, takeCount);
     },
-    async [api.CreateMoving]({ commit }, addMovingDto: AddMovingDto) {
+    async [actions.CreateMoving]({ commit }, addMovingDto: AddMovingDto) {
       this.state.isCreateMoving = true;
       await saveMoving(commit, addMovingDto);
     },
