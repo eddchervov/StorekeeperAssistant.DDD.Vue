@@ -124,11 +124,9 @@ export default class WarehouseBalanceReport extends Vue {
       return;
     }
     this.isLoadForm = true;
-    let date = null;
+    let date: string | null = null;
     if (this.isCurrentTime == false) {
-      date = moment(this.selectDateTime);
-      date = date.utc();
-      date = date.format("YYYY-MM-DD HH:mm:ss");
+      date = moment(this.selectDateTime).utc().format("YYYY-MM-DD HH:mm:ss");
     }
     const selectWarehouseId = this.selectWarehouseId;
     await this.$store.dispatch(actions.GetWarehouseBalanceReport, {

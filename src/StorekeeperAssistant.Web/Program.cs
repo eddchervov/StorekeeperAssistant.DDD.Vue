@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using NLog.Web;
 using StorekeeperAssistant.DataAccess;
 using System;
 
@@ -10,11 +11,26 @@ namespace StorekeeperAssistant.Web
     {
         public static void Main(string[] args)
         {
-            var host = CreateHostBuilder(args).Build();
+            var logger = NLogBuilder.ConfigureNLog("nlog.config").GetCurrentClassLogger();
+            try
+            {
+                logger.Debug("init main");
 
-            InitializationDb(host);
+                var host = CreateHostBuilder(args).Build();
 
-            host.Run();
+                InitializationDb(host);
+
+                host.Run();
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex, "Stopped program because of exception");
+                throw;
+            }
+            finally
+            {
+                NLog.LogManager.Shutdown();
+            }
         }
 
         private static void InitializationDb(IHost host)
