@@ -13,14 +13,14 @@
           <div class="card">
             <div class="card-body">
               <h6 class="card-title mb-3">
-                Дата: {{ moving.transferDate | toLocalFormat }}
+                <span class="fw-550">Дата:</span> {{ moving.transferDate | toLocalFormat }}
               </h6>
-              <h6 class="card-subtitle mb-2">
+              <h6 class="card-subtitle mb-2 fw-550">
                 <template v-if="moving.departureWarehouse">
                   {{ moving.departureWarehouse.name }}
                 </template>
                 <template v-else> Извне </template>
-                <img src="57116.png" class="right-btn" />
+                <i class="fas fa-long-arrow-alt-right"></i>
                 <template v-if="moving.arrivalWarehouse">
                   {{ moving.arrivalWarehouse.name }}
                 </template>

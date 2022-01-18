@@ -80,7 +80,7 @@ namespace StorekeeperAssistant.UseCases.Movings.Queries.GetWarehouseBalanceRepor
 
             foreach (var row in rows)
             {
-                if (warehouseInventoryItemDtos.Any(x => x.InventoryItem.Id == row.InventoryItemId) == false)
+                if (warehouseInventoryItemDtos.Any(x => x.InventoryItem.Id == row.InventoryItemId) == false && row.WarehouseInventoryItemCount > 0)
                     warehouseInventoryItemDtos.Add(new WarehouseInventoryItemDto
                     {
                         Id = row.WarehouseInventoryItemId,

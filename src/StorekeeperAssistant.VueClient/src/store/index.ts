@@ -1,3 +1,4 @@
+import { AddMovingDto } from "@/models/dto/add-moving-dto";
 import { MovingDto } from "@/models/dto/moving-dto";
 import { OptionsDto } from "@/models/dto/options-dto";
 import { WarehouseDto } from "@/models/dto/warehouse-dto";
@@ -13,6 +14,7 @@ import {
   getWarehouseBalanceReport,
   getMovings,
   loadDepartureWarehouseInventoryItems,
+  saveMoving,
 } from "./client-helper";
 import mutations from "./mutations";
 
@@ -20,6 +22,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    maxValueInventoryItem: 100000,
     inventoryItems: new Array<InventoryItemVm>(),
     operation: {
       COMING: 1,
@@ -27,6 +30,7 @@ export default new Vuex.Store({
       MOVING: 3,
     },
     isLoadDepartureWarehouseInventoryItems: true,
+    isCreateMoving: false,
 
     departureWarehouseInventoryItems: new Array<WarehouseInventoryItemVm>(),
     arrivalWarehouseInventoryItems: new Array<WarehouseInventoryItemVm>(),
@@ -53,6 +57,7 @@ export default new Vuex.Store({
     ] as Array<OptionsDto>,
   },
   getters: {
+    isCreateMoving: (state) => state.isCreateMoving as boolean,
     departureWarehouseInventoryItems: (state) =>
       state.departureWarehouseInventoryItems as Array<WarehouseInventoryItemVm>,
     arrivalWarehouseInventoryItems: (state) =>
@@ -77,6 +82,9 @@ export default new Vuex.Store({
     typeOperations: (state) => state.typeOperations as Array<OptionsDto>,
   },
   mutations: {
+    [mutations.setIsCreateMoving]: (state, value) => {
+      state.isCreateMoving = value;
+    },
     [mutations.setDepartureWarehouseInventoryItems]: (state, value) => {
       state.departureWarehouseInventoryItems = value;
     },
@@ -139,12 +147,15 @@ export default new Vuex.Store({
     async [api.GetWarehouseBalanceReport]({ commit }, { warehouseId, date }) {
       await getWarehouseBalanceReport(commit, warehouseId, date);
     },
-    async [api.GetWarehouseBalanceReport]({ commit }, { warehouseId }) {
+    async [api.WarehouseInventoryItems]({ commit }, { warehouseId }) {
       await loadDepartureWarehouseInventoryItems(commit, warehouseId);
     },
     async [api.GetMovings]({ commit }, { skipCount, takeCount }) {
       await getMovings(commit, skipCount, takeCount);
     },
+    async [api.CreateMoving]({ commit }, addMovingDto: AddMovingDto) {
+      this.state.isCreateMoving = true;
+      await saveMoving(commit, addMovingDto);
+    },
   },
-  modules: {},
 });

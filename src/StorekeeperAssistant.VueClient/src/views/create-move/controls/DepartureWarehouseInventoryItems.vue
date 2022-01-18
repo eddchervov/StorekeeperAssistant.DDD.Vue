@@ -47,15 +47,18 @@ export default class DepartureWarehouseInventoryItems extends Vue {
       this.departureWarehouseInventoryItems.length > 0
     );
   }
+
   get isNotExistDepartureWarehouseInventoryItems(): boolean {
     return (
       this.isLoadDepartureWarehouseInventoryItems == false &&
       this.departureWarehouseInventoryItems.length == 0
     );
   }
+
   get isLoadDepartureWarehouseInventoryItems(): boolean {
     return this.$store.getters.isLoadDepartureWarehouseInventoryItems;
   }
+
   get isMovingOrConsumption(): boolean {
     return (
       this.$store.getters.selectOperation ==
@@ -64,6 +67,7 @@ export default class DepartureWarehouseInventoryItems extends Vue {
         this.$store.state.operation.CONSUMPTION
     );
   }
+
   get departureWarehouseInventoryItems(): Array<WarehouseInventoryItemVm> {
     return this.$store.getters.departureWarehouseInventoryItems;
   }

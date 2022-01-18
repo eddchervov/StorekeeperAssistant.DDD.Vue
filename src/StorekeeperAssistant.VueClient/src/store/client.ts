@@ -1,3 +1,4 @@
+import { AddMovingDto } from "@/models/dto/add-moving-dto";
 import axios from "axios";
 import api from "./api";
 
@@ -17,16 +18,15 @@ export default {
    * Получить перемещения
    */
   getMovings: (skipCount: number, takeCount: number) =>
-    axios.get(api.GetMovings + "/" + skipCount + "/" + takeCount),
+    axios.get(api.GetMovings + skipCount + "/" + takeCount),
   /**
    * Получить остатки склада
    */
   getWarehouseBalanceReport: (warehouseId: string, date: string | null) =>
-    axios.get(
-      api.GetWarehouseBalanceReport + "/" + warehouseId + "/" + (date ?? "")
-    ),
+    axios.get(api.GetWarehouseBalanceReport + warehouseId + "/" + (date ?? "")),
   /**
    * Создать перемещение
    */
-  createMoving: (data) => axios.post(api.CreateMoving, data),
+  createMoving: (addMovingDto: AddMovingDto) =>
+    axios.post(api.CreateMoving, addMovingDto),
 };

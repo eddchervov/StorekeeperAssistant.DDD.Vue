@@ -1,3 +1,4 @@
+import { AddMovingDto } from "@/models/dto/add-moving-dto";
 import { InventoryItemDto } from "@/models/dto/inventory-item-dto";
 import { WarehouseInventoryItemDto } from "@/models/dto/warehouse-inventory-item-dto";
 import { InventoryItemVm } from "@/models/view-models/inventory-item-vm";
@@ -78,21 +79,33 @@ export function loadDepartureWarehouseInventoryItems(
 
       const departureWarehouseInventoryItems: Array<WarehouseInventoryItemVm> =
         [];
-      (p.data as Array<WarehouseInventoryItemDto>).forEach(function (
-        warehouseInventoryItem
-      ) {
-        departureWarehouseInventoryItems.push({
-          id: warehouseInventoryItem.id,
-          count: warehouseInventoryItem.count,
-          inventoryItem: warehouseInventoryItem.inventoryItem,
-          newCount: null,
-        } as WarehouseInventoryItemVm);
-      });
+      (p.data as Array<WarehouseInventoryItemDto>).forEach(
+        (warehouseInventoryItem) => {
+          departureWarehouseInventoryItems.push({
+            id: warehouseInventoryItem.id,
+            count: warehouseInventoryItem.count,
+            inventoryItem: warehouseInventoryItem.inventoryItem,
+            newCount: null,
+          } as WarehouseInventoryItemVm);
+        }
+      );
 
       commit(
         mutations.setDepartureWarehouseInventoryItems,
         departureWarehouseInventoryItems
       );
+    })
+    .catch((e) => {
+      commit(mutations.setError, { msg: e });
+    });
+}
+
+export function saveMoving(commit: Commit, addMovingDto: AddMovingDto) {
+  client
+    .createMoving(addMovingDto)
+    .then((p) => {
+      commit(mutations.setData, { isCreateMoving: false });
+      location.reload();
     })
     .catch((e) => {
       commit(mutations.setError, { msg: e });

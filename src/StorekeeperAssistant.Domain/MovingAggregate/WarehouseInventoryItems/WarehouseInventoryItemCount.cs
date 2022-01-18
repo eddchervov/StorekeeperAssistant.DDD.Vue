@@ -15,8 +15,8 @@ namespace StorekeeperAssistant.Domain.MovingAggregate.WarehouseInventoryItems
 
         public WarehouseInventoryItemCount(int count)
         {
-            if (count < 1)
-                throw new ArgumentException("MovingDetail can`t be less then 1!", nameof(count));
+            if (count < 0)
+                throw new ArgumentException("Count can`t be less then 0!", nameof(count));
 
             Value = count;
         }

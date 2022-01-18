@@ -94,6 +94,7 @@ import { WarehouseDto } from "@/models/dto/warehouse-dto";
 import moment from "moment";
 import api from "@/store/api";
 import { WarehouseInventoryItemDto } from "@/models/dto/warehouse-inventory-item-dto";
+import mutations from "@/store/mutations";
 
 @Component({})
 export default class WarehouseBalanceReport extends Vue {
@@ -119,7 +120,7 @@ export default class WarehouseBalanceReport extends Vue {
 
   async click_get_report(): Promise<void> {
     if (!this.selectWarehouseId) {
-      alert("Выберите склад");
+      this.$store.commit(mutations.setError, { msg: "Выберите склад" });
       return;
     }
     this.isLoadForm = true;
@@ -139,3 +140,18 @@ export default class WarehouseBalanceReport extends Vue {
   }
 }
 </script>
+
+<style>
+/*=========================================================
+        vue-ctk-date-time-picker
+===========================================================*/
+.date-input-vue-ctk {
+  padding-top: 0 !important;
+}
+
+.date-input-vue-ctk .field-input {
+  padding-top: 0 !important;
+  height: 31px !important;
+  min-height: 25px !important;
+}
+</style>

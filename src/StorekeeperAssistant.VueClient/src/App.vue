@@ -1,14 +1,51 @@
 <template>
   <div id="app">
-    <div id="nav" class="text-center">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link> |
-      <router-link to="/create-move">Создать перемещениe | </router-link>
-      <router-link to="/move-list">Список перемещений | </router-link>
-      <router-link to="/warehouse-balance-report">
-        Отчет остатков склада
-      </router-link>
+    <div class="container">
+      <h5 class="mb-3 mt-1">
+        <a href="http://eddcher.ru/">Вернуться на eddcher.ru</a>
+      </h5>
     </div>
+    <nav
+      id="nav"
+      class="navbar navbar-expand-lg navbar-light bg-light py-2 mb-4"
+    >
+      <div class="container">
+        <router-link to="/" class="navbar-brand">
+          Помощник кладовщика
+        </router-link>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarText"
+          aria-controls="navbarText"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <router-link to="/create-move" class="nav-link">
+                Создать перемещениe
+              </router-link>
+            </li>
+            <li class="nav-item">
+              <router-link to="/move-list" class="nav-link">
+                Список перемещений
+              </router-link>
+            </li>
+            <li class="nav-item">
+              <router-link to="/warehouse-balance-report" class="nav-link">
+                Отчет остатков склада
+              </router-link>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
     <div class="container">
       <div class="row">
         <div class="col-12">
@@ -16,6 +53,20 @@
         </div>
       </div>
     </div>
+
+    <footer class="border-top footer text-muted mt-4">
+      <div class="container">
+        © 2022 - Помощник кладовщика
+        <p>
+          GitHub:
+          <a
+            target="_blank"
+            href="https://github.com/eddchervov/StorekeeperAssistant.DDD.Vue"
+            >eddchervov.StorekeeperAssistant.DDD.Vue</a
+          >
+        </p>
+      </div>
+    </footer>
   </div>
 </template>
 
@@ -37,7 +88,12 @@
 }
 
 #nav a.router-link-exact-active {
-  color: #42b983;
+  color: #41b883;
+  font-weight: 600 !important;
+}
+
+.fw-550 {
+  font-weight: 550;
 }
 </style>
 

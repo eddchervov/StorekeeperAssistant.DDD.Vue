@@ -1,18 +1,23 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+    <div class="text-center">
+      <p>
+        Данный пример является показным, не полным и не несет в себе смысловой
+        нагрузки.
+      </p>
+      GitHub:
+      <a href="https://github.com/eddchervov/StorekeeperAssistant.DDD.Vue"
+        >eddchervov.StorekeeperAssistant.DDD.Vue</a
+      >
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import HelloWorld from "@/components/HelloWorld.vue"; // @ is an alias to /src
 
 @Component({
-  components: {
-    HelloWorld,
-  },
+  components: {},
 })
 export default class Home extends Vue {}
 </script>

@@ -31,7 +31,7 @@ export default class ArrivalWarehouse extends Vue {
 
     let warehouses: Array<WarehouseDto> = [];
     if (value)
-      (this.$store.state.getters.warehouses as Array<WarehouseDto>).forEach(
+      (this.$store.getters.warehouses as Array<WarehouseDto>).forEach(
         (warehouse) => {
           if (warehouse.id != this.$store.getters.selectArrivalWarehouseId)
             warehouses.push(warehouse);

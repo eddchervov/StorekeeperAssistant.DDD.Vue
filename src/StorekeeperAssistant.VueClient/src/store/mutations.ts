@@ -5,6 +5,7 @@ export default {
   setLoadDepartureWarehouseInventoryItems: 'setLoadDepartureWarehouseInventoryItems',
   setDepartureWarehouseInventoryItems: 'setDepartureWarehouseInventoryItems',
   setArrivalWarehouseInventoryItems: 'setArrivalWarehouseInventoryItems',
+  setIsCreateMoving: 'setIsCreateMoving',
   setWarehouses: 'setWarehouses',
   setDepartureWarehouses: 'setDepartureWarehouses',
   setArrivalWarehouses: 'setArrivalWarehouses',
