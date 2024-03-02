@@ -5,6 +5,7 @@ using StorekeeperAssistant.Domain.MovingAggregate.MovingDetails;
 using StorekeeperAssistant.Domain.MovingAggregate.WarehouseInventoryItems;
 using StorekeeperAssistant.Domain.WarehouseAggregate;
 using StorekeeperAssistant.UseCases.Interfaces;
+using StorekeeperAssistant.UseCases.Movings.Commands.AddMoving.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,23 @@ using System.Threading.Tasks;
 
 namespace StorekeeperAssistant.UseCases.Movings.Commands.AddMoving
 {
+    public class AddMovingCommand : IRequest<Guid>
+    {
+        public Guid? DepartureWarehouseId { get; set; }
+        public Guid? ArrivalWarehouseId { get; set; }
+        public IEnumerable<AddInventoryItemDto> InventoryItems { get; set; } = new List<AddInventoryItemDto>();
+
+        public IEnumerable<WarehouseId> GetWarehouseIds()
+        {
+            var warehouseIds = new List<WarehouseId>();
+
+            if (DepartureWarehouseId != null) warehouseIds.Add(new WarehouseId(DepartureWarehouseId.Value));
+            if (ArrivalWarehouseId != null) warehouseIds.Add(new WarehouseId(ArrivalWarehouseId.Value));
+
+            return warehouseIds;
+        }
+    }
+
     public class AddMovingCommandHandler : IRequestHandler<AddMovingCommand, Guid>
     {
         private readonly IMovingRepository _movingRepository;
@@ -38,21 +56,20 @@ namespace StorekeeperAssistant.UseCases.Movings.Commands.AddMoving
 
         public async Task<Guid> Handle(AddMovingCommand request, CancellationToken cancellationToken)
         {
-            var warehouseIds = request.GetWarehouseIds();
-            var warehouses = await _warehouseRepository.GetByIds(warehouseIds);
+            var warehouses = await _warehouseRepository.GetByIds(request.GetWarehouseIds());
 
             if (request.DepartureWarehouseId != null && warehouses.Any(x => x.Id.Value == request.DepartureWarehouseId) == false)
-                throw new ArgumentException($"Склада отправления с id={request.DepartureWarehouseId.Value} не найдено");
+                throw new ArgumentException($"Склад отправлени с id={request.DepartureWarehouseId.Value} не найден");
 
             if (request.ArrivalWarehouseId != null && warehouses.Any(x => x.Id.Value == request.ArrivalWarehouseId) == false)
-                throw new ArgumentException($"Склада прибытия с id={request.ArrivalWarehouseId.Value} не найдено");
+                throw new ArgumentException($"Склад прибытия с id={request.ArrivalWarehouseId.Value} не найден");
 
             var inventoryItems = await _inventoryItemRepository.GetByIds(request.InventoryItems.Distinct().Select(x => new InventoryItemId(x.Id)));
 
             foreach (var inventoryItem in request.InventoryItems)
             {
                 if (inventoryItems.Any(x => x.Id.Value == inventoryItem.Id) == false)
-                    throw new ArgumentException($"Номенклатуры с id={inventoryItem.Id} не найдено");
+                    throw new ArgumentException($"Номенклатура с id={inventoryItem.Id} не найдена");
 
                 _movingDetails.Add(CreateMovingDetail(inventoryItem));
 
@@ -70,8 +87,8 @@ namespace StorekeeperAssistant.UseCases.Movings.Commands.AddMoving
             }
 
             _movingRepository.Add(CreateMoving(
-                    request.DepartureWarehouseId != null ? new WarehouseId(request.DepartureWarehouseId.Value) : null,
-                    request.ArrivalWarehouseId != null ? new WarehouseId(request.ArrivalWarehouseId.Value) : null
+                    request.DepartureWarehouseId != null ? new DepartureWarehouseId(request.DepartureWarehouseId.Value) : null,
+                    request.ArrivalWarehouseId != null ? new ArrivalWarehouseId(request.ArrivalWarehouseId.Value) : null
                 ));
 
             await _movingRepository.SaveAsync();
@@ -79,15 +96,15 @@ namespace StorekeeperAssistant.UseCases.Movings.Commands.AddMoving
             return _movingId.Value;
         }
 
-        private Moving CreateMoving(WarehouseId? departureWarehouseId, WarehouseId? arrivalWarehouseId)
+        private Moving CreateMoving(DepartureWarehouseId? departureWarehouseId, ArrivalWarehouseId? arrivalWarehouseId)
         {
-            return new Moving(
+            return Moving.Create(
                     _movingId,
-                    _movingDetails,
-                    _warehouseInventoryItems,
                     _utcNow,
                     departureWarehouseId,
-                    arrivalWarehouseId
+                    arrivalWarehouseId,
+                     _movingDetails,
+                    _warehouseInventoryItems
                 );
         }
 

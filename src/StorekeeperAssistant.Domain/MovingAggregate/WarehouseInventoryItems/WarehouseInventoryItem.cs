@@ -5,7 +5,7 @@ using System;
 
 namespace StorekeeperAssistant.Domain.MovingAggregate.WarehouseInventoryItems
 {
-    public class WarehouseInventoryItem : Entity, IAggregateRoot
+    public class WarehouseInventoryItem : Entity
     {
 #nullable disable
         WarehouseInventoryItem() { }

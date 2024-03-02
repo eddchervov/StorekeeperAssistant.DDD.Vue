@@ -3,7 +3,7 @@ using StorekeeperAssistant.Domain.InventoryItemAggregate;
 
 namespace StorekeeperAssistant.Domain.MovingAggregate.MovingDetails
 {
-    public class MovingDetail : Entity, IAggregateRoot
+    public class MovingDetail : Entity
     {
 #nullable disable
         MovingDetail() { }

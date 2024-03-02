@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using StorekeeperAssistant.UseCases.Movings.Commands.AddMoving;
+using StorekeeperAssistant.UseCases.Movings.Commands.AddMoving.Dtos;
 using StorekeeperAssistant.UseCases.Movings.Queries.GetMovings;
 using System;
 using System.Threading.Tasks;
@@ -25,9 +26,14 @@ namespace StorekeeperAssistant.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<Guid> Add([FromBody] AddMovingDto addMovingDto)
+        public async Task<Guid> Add([FromBody] AddMovingDto request)
         {
-            return await _sender.Send(new AddMovingCommand(addMovingDto.DepartureWarehouseId, addMovingDto.ArrivalWarehouseId, addMovingDto.InventoryItems));
+            return await _sender.Send(new AddMovingCommand
+            {
+                DepartureWarehouseId = request.DepartureWarehouseId,
+                ArrivalWarehouseId = request.ArrivalWarehouseId,
+                InventoryItems = request.InventoryItems
+            });
         }
     }
 }
