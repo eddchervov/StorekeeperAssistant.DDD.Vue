@@ -3,35 +3,34 @@ using System;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace BuildingBlocks.Infrastructure
+namespace BuildingBlocks.Infrastructure;
+
+public class SqlConnectionFactory : ISqlConnectionFactory, IDisposable
 {
-    public class SqlConnectionFactory : ISqlConnectionFactory, IDisposable
+    private readonly string _connectionString;
+    private IDbConnection? _connection;
+
+    public SqlConnectionFactory(string connectionString)
     {
-        private readonly string _connectionString;
-        private IDbConnection? _connection;
+        _connectionString = connectionString;
+    }
 
-        public SqlConnectionFactory(string connectionString)
+    public IDbConnection GetOpenConnection()
+    {
+        if (_connection == null || _connection.State != ConnectionState.Open)
         {
-            _connectionString = connectionString;
+            _connection = new SqlConnection(_connectionString);
+            _connection.Open();
         }
 
-        public IDbConnection GetOpenConnection()
-        {
-            if (_connection == null || _connection.State != ConnectionState.Open)
-            {
-                _connection = new SqlConnection(_connectionString);
-                _connection.Open();
-            }
+        return this._connection;
+    }
 
-            return this._connection;
-        }
-
-        public void Dispose()
+    public void Dispose()
+    {
+        if (_connection != null && _connection.State == ConnectionState.Open)
         {
-            if (_connection != null && _connection.State == ConnectionState.Open)
-            {
-                _connection.Dispose();
-            }
+            _connection.Dispose();
         }
     }
 }

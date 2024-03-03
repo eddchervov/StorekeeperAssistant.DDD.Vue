@@ -1,9 +1,8 @@
 ﻿using System.Data;
 
-namespace BuildingBlocks.UseCases
+namespace BuildingBlocks.UseCases;
+
+public interface ISqlConnectionFactory
 {
-    public interface ISqlConnectionFactory
-    {
-        IDbConnection GetOpenConnection();
-    }
+    IDbConnection GetOpenConnection();
 }

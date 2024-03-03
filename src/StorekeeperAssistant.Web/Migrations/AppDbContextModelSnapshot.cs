@@ -6,6 +6,8 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StorekeeperAssistant.DataAccess;
 
+#nullable disable;
+
 namespace StorekeeperAssistant.Web.Migrations
 {
     [DbContext(typeof(AppDbContext))]

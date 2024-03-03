@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
+#nullable disable
+
 namespace StorekeeperAssistant.Web.Migrations
 {
     public partial class change_moving_detail : Migration

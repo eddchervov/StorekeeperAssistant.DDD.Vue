@@ -1,8 +1,8 @@
 ﻿using BuildingBlocks.Domain;
 
-namespace StorekeeperAssistant.Domain.InventoryItemAggregate
+namespace StorekeeperAssistant.Domain.InventoryItems
 {
-    public class InventoryItem : Entity, IAggregateRoot
+    public sealed class InventoryItem : Entity, IAggregateRoot
     {
 #nullable disable
         InventoryItem() { }

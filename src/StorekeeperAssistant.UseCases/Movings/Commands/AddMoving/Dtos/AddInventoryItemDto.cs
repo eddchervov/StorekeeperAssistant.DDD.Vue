@@ -1,10 +1,9 @@
 ﻿using System;
 
-namespace StorekeeperAssistant.UseCases.Movings.Commands.AddMoving.Dtos
+namespace StorekeeperAssistant.UseCases.Movings.Commands.AddMoving.Dtos;
+
+public sealed class AddInventoryItemDto
 {
-    public class AddInventoryItemDto
-    {
-        public Guid Id { get; set; }
-        public int Count { get; set; }
-    }
+    public Guid Id { get; set; }
+    public int Count { get; set; }
 }

@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StorekeeperAssistant.DataAccess;
 
-namespace StorekeeperAssistant.Web.Migrations
+namespace StorekeeperAssistant.Web.Migrations;
 {
     [DbContext(typeof(AppDbContext))]
     [Migration("20211024140750_init")]

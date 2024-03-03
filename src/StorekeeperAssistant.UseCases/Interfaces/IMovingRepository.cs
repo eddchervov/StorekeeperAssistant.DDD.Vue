@@ -1,11 +1,10 @@
-﻿using StorekeeperAssistant.Domain.MovingAggregate;
+﻿using StorekeeperAssistant.Domain.Movings;
 using System.Threading.Tasks;
 
-namespace StorekeeperAssistant.UseCases.Interfaces
+namespace StorekeeperAssistant.UseCases.Interfaces;
+
+public interface IMovingRepository
 {
-    public interface IMovingRepository
-    {
-        void Add(Moving moving);
-        Task SaveAsync();
-    }
+    void Add(Moving moving);
+    Task SaveAsync();
 }

@@ -1,6 +1,5 @@
-﻿namespace BuildingBlocks.Domain
+﻿namespace BuildingBlocks.Domain;
+
+public abstract class Entity
 {
-    public abstract class Entity
-    {
-    }
 }

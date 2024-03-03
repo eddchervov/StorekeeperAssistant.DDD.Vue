@@ -1,4 +1,4 @@
-const serverPath = "http://api.sa2.eddcher.ru/";
+const serverPath = "http://localhost:45210/";
 
 export default {
   /**

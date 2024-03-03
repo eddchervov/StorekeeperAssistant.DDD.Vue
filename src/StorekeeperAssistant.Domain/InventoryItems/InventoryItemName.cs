@@ -1,8 +1,8 @@
 ﻿using BuildingBlocks.Domain;
 
-namespace StorekeeperAssistant.Domain.InventoryItemAggregate
+namespace StorekeeperAssistant.Domain.InventoryItems
 {
-    public class InventoryItemName : StringNotEmpty
+    public sealed class InventoryItemName : StringNotEmpty
     {
         public InventoryItemName(string value) : base(value)
         {

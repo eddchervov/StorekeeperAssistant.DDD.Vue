@@ -1,51 +1,52 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using StorekeeperAssistant.Domain.InventoryItemAggregate;
-using StorekeeperAssistant.Domain.MovingAggregate;
-using StorekeeperAssistant.Domain.MovingAggregate.WarehouseInventoryItems;
-using StorekeeperAssistant.Domain.WarehouseAggregate;
+using StorekeeperAssistant.Domain.InventoryItems;
+using StorekeeperAssistant.Domain.Movings;
+using StorekeeperAssistant.Domain.Movings.WarehouseInventoryItems;
+using StorekeeperAssistant.Domain.Warehouses;
 
-namespace StorekeeperAssistant.DataAccess.EntityConfigurations
+#nullable disable
+
+namespace StorekeeperAssistant.DataAccess.EntityConfigurations;
+
+sealed class WarehouseInventoryItemEntityTypeConfiguration : IEntityTypeConfiguration<WarehouseInventoryItem>
 {
-    class WarehouseInventoryItemEntityTypeConfiguration : IEntityTypeConfiguration<WarehouseInventoryItem>
+    public void Configure(EntityTypeBuilder<WarehouseInventoryItem> builder)
     {
-        public void Configure(EntityTypeBuilder<WarehouseInventoryItem> builder)
+        builder.ToTable("WarehouseInventoryItems");
+
+        builder.HasKey(x => x.Id);
+
+        builder.Property(x => x.Id)
+            .HasConversion(
+            i => i.Value,
+            i => new WarehouseInventoryItemId(i)
+            );
+
+        builder.OwnsOne(p => p.Count, p =>
         {
-            builder.ToTable("WarehouseInventoryItems");
+            p.Property(pv => pv.Value).HasColumnName("Count");
+        })
+        .Navigation(x => x.Count).IsRequired();
 
-            builder.HasKey(x => x.Id);
+        builder.Property(b => b.Date).HasColumnName("Date");
 
-            builder.Property(x => x.Id)
-                .HasConversion(
-                i => i.Value,
-                i => new WarehouseInventoryItemId(i)
-                );
+        builder.Property<InventoryItemId>("InventoryItemId")
+            .HasConversion(
+            i => i.Value,
+            i => new InventoryItemId(i)
+            );
 
-            builder.OwnsOne(p => p.Count, p =>
-            {
-                p.Property(pv => pv.Value).HasColumnName("Count");
-            })
-            .Navigation(x => x.Count).IsRequired();
+        builder.Property<MovingId>("MovingId")
+            .HasConversion(
+            i => i.Value,
+            i => new MovingId(i)
+            );
 
-            builder.Property(b => b.Date).HasColumnName("Date");
-
-            builder.Property<InventoryItemId>("InventoryItemId")
-                .HasConversion(
-                i => i.Value,
-                i => new InventoryItemId(i)
-                );
-
-            builder.Property<MovingId>("MovingId")
-                .HasConversion(
-                i => i.Value,
-                i => new MovingId(i)
-                );
-
-            builder.Property<WarehouseId>("WarehouseId")
-                .HasConversion(
-                i => i.Value,
-                i => new WarehouseId(i)
-                );
-        }
+        builder.Property<WarehouseId>("WarehouseId")
+            .HasConversion(
+            i => i.Value,
+            i => new WarehouseId(i)
+            );
     }
 }

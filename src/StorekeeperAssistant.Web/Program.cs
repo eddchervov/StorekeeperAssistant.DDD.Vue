@@ -5,54 +5,55 @@ using NLog.Web;
 using StorekeeperAssistant.DataAccess;
 using System;
 
-namespace StorekeeperAssistant.Web
+#nullable disable
+
+namespace StorekeeperAssistant.Web;
+
+public class Program
 {
-    public class Program
+    public static void Main(string[] args)
     {
-        public static void Main(string[] args)
+        var logger = NLogBuilder.ConfigureNLog("nlog.config").GetCurrentClassLogger();
+        try
         {
-            var logger = NLogBuilder.ConfigureNLog("nlog.config").GetCurrentClassLogger();
-            try
-            {
-                logger.Debug("init main");
+            logger.Debug("init main");
 
-                var host = CreateHostBuilder(args).Build();
+            var host = CreateHostBuilder(args).Build();
 
-                InitializationDb(host);
+            InitializationDb(host);
 
-                host.Run();
-            }
-            catch (Exception ex)
-            {
-                logger.Error(ex, "Stopped program because of exception");
-                throw;
-            }
-            finally
-            {
-                NLog.LogManager.Shutdown();
-            }
+            host.Run();
         }
-
-        private static void InitializationDb(IHost host)
+        catch (Exception ex)
         {
-            using var scope = host.Services.CreateScope();
-            var services = scope.ServiceProvider;
-            try
-            {
-                var context = services.GetRequiredService<AppDbContext>();
-                DbInitializer.Initialize(context);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            logger.Error(ex, "Stopped program because of exception");
+            throw;
         }
-
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
+        finally
+        {
+            NLog.LogManager.Shutdown();
+        }
     }
+
+    private static void InitializationDb(IHost host)
+    {
+        using var scope = host.Services.CreateScope();
+        var services = scope.ServiceProvider;
+        try
+        {
+            var context = services.GetRequiredService<AppDbContext>();
+            DbInitializer.Initialize(context);
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+    }
+
+    public static IHostBuilder CreateHostBuilder(string[] args) =>
+        Host.CreateDefaultBuilder(args)
+            .ConfigureWebHostDefaults(webBuilder =>
+            {
+                webBuilder.UseStartup<Startup>();
+            });
 }
