@@ -62,6 +62,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "StorekeeperAssistant.Vue3Cl
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
 		VWDPort = "63979"
+		SlnRelativePath = "src\StorekeeperAssistant.Vue3Client\"
 	EndProjectSection
 EndProject
 Global
