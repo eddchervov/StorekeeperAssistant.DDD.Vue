@@ -1,4 +1,4 @@
-import { AddMovingDto } from "@/models/dto/add-moving-dto";
+import { CreateMovingDto } from "@/models/dto/create-moving-dto";
 import { InventoryItemDto } from "@/models/dto/inventory-item-dto";
 import { WarehouseInventoryItemDto } from "@/models/dto/warehouse-inventory-item-dto";
 import { InventoryItemVm } from "@/models/view-models/inventory-item-vm";
@@ -6,6 +6,8 @@ import { WarehouseInventoryItemVm } from "@/models/view-models/warehouse-invento
 import { Commit } from "vuex";
 import client from "./client";
 import mutations from "./mutations";
+import { CreateIncomeDto } from "@/models/dto/create-income-dto";
+import { CreateExpenseDto } from "@/models/dto/create-expense-dto";
 
 export async function loadInventoryItems(commit: Commit): Promise<void> {
   client
@@ -100,12 +102,42 @@ export async function loadDepartureWarehouseInventoryItems(
     });
 }
 
-export async function saveMoving(
+export async function createMoving(
   commit: Commit,
-  addMovingDto: AddMovingDto
+  createMovingDto: CreateMovingDto
 ): Promise<void> {
   client
-    .createMoving(addMovingDto)
+    .createMoving(createMovingDto)
+    .then(() => {
+      commit(mutations.setData, { isCreateMoving: false });
+      location.reload();
+    })
+    .catch((e) => {
+      commit(mutations.setError, { msg: e });
+    });
+}
+
+export async function createExpense(
+  commit: Commit,
+  createExpenseDto: CreateExpenseDto
+): Promise<void> {
+  client
+    .createExpense(createExpenseDto)
+    .then(() => {
+      commit(mutations.setData, { isCreateMoving: false });
+      location.reload();
+    })
+    .catch((e) => {
+      commit(mutations.setError, { msg: e });
+    });
+}
+
+export async function createIncome(
+  commit: Commit,
+  createIncomeDto: CreateIncomeDto
+): Promise<void> {
+  client
+    .createIncome(createIncomeDto)
     .then(() => {
       commit(mutations.setData, { isCreateMoving: false });
       location.reload();

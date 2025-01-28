@@ -17,9 +17,4 @@ public sealed class MovingRepository : IMovingRepository
     {
         _context.Movings.Add(moving);
     }
-
-    public async Task SaveAsync()
-    {
-        await _context.SaveChangesAsync();
-    }
 }

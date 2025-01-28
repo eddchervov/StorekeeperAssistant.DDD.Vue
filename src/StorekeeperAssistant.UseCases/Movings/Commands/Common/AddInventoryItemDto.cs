@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace StorekeeperAssistant.UseCases.Movings.Commands.AddMoving.Dtos;
+namespace StorekeeperAssistant.UseCases.Movings.Commands.Common;
 
 public sealed class AddInventoryItemDto
 {

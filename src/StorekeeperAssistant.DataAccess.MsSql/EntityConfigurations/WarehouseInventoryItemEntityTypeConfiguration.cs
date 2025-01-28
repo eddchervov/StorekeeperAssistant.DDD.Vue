@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using StorekeeperAssistant.Domain.InventoryItems;
 using StorekeeperAssistant.Domain.Movings;
-using StorekeeperAssistant.Domain.Movings.WarehouseInventoryItems;
+using StorekeeperAssistant.Domain.WarehouseInventoryItems;
 using StorekeeperAssistant.Domain.Warehouses;
 
 #nullable disable

@@ -22,25 +22,25 @@ public static class DbInitializer
         {
             var inventoryItems = new List<InventoryItem>()
             {
-                new InventoryItem(
+                InventoryItem.Create(
                     new InventoryItemId(Guid.NewGuid()),
                     new InventoryItemName("Номенклатура А")),
-                new InventoryItem(
+                InventoryItem.Create(
                     new InventoryItemId(Guid.NewGuid()),
                     new InventoryItemName("Номенклатура Б")),
-                new InventoryItem(
+                InventoryItem.Create(
                     new InventoryItemId(Guid.NewGuid()),
                     new InventoryItemName("Номенклатура В")),
-                new InventoryItem(
+                InventoryItem.Create(
                     new InventoryItemId(Guid.NewGuid()),
                     new InventoryItemName("Номенклатура Г")),
-                new InventoryItem(
+                InventoryItem.Create(
                     new InventoryItemId(Guid.NewGuid()),
                     new InventoryItemName("Номенклатура Д")),
-                new InventoryItem(
+                InventoryItem.Create(
                     new InventoryItemId(Guid.NewGuid()),
                     new InventoryItemName("Номенклатура Е")),
-                new InventoryItem(
+                InventoryItem.Create(
                     new InventoryItemId(Guid.NewGuid()),
                     new InventoryItemName("Номенклатура Ж")),
             };
@@ -55,13 +55,13 @@ public static class DbInitializer
         {
             var warehouses = new List<Warehouse>()
             {
-                new Warehouse(
+                Warehouse.Create(
                     new WarehouseId(Guid.NewGuid()),
                     new WarehouseName("Склад А")),
-                new Warehouse(
+                Warehouse.Create(
                     new WarehouseId(Guid.NewGuid()),
                     new WarehouseName("Склад Б")),
-                new Warehouse(
+                Warehouse.Create(
                     new WarehouseId(Guid.NewGuid()),
                     new WarehouseName("Склад В"))
             };

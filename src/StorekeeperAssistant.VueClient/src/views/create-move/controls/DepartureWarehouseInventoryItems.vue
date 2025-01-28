@@ -64,7 +64,7 @@ export default class DepartureWarehouseInventoryItems extends Vue {
       this.$store.getters.selectOperation ==
         this.$store.state.operation.MOVING ||
       this.$store.getters.selectOperation ==
-        this.$store.state.operation.CONSUMPTION
+        this.$store.state.operation.EXPENSE
     );
   }
 

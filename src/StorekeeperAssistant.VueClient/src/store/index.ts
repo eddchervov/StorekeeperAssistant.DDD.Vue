@@ -1,4 +1,4 @@
-import { AddMovingDto } from "@/models/dto/add-moving-dto";
+import { CreateMovingDto } from "@/models/dto/create-moving-dto";
 import { MovingDto } from "@/models/dto/moving-dto";
 import { OptionsDto } from "@/models/dto/options-dto";
 import { WarehouseDto } from "@/models/dto/warehouse-dto";
@@ -14,9 +14,13 @@ import {
   getWarehouseBalanceReport,
   getMovings,
   loadDepartureWarehouseInventoryItems,
-  saveMoving,
+  createMoving,
+  createExpense,
+  createIncome,
 } from "./client-helper";
 import mutations from "./mutations";
+import { CreateIncomeDto } from "@/models/dto/create-income-dto";
+import { CreateExpenseDto } from "@/models/dto/create-expense-dto";
 
 Vue.use(Vuex);
 
@@ -25,8 +29,8 @@ export default new Vuex.Store({
     maxValueInventoryItem: 100000,
     inventoryItems: new Array<InventoryItemVm>(),
     operation: {
-      COMING: 1,
-      CONSUMPTION: 2,
+      INCOME: 1,
+      EXPENSE: 2,
       MOVING: 3,
     },
     isLoadDepartureWarehouseInventoryItems: true,
@@ -158,9 +162,17 @@ export default new Vuex.Store({
     async [actions.GetMovings]({ commit }, { skipCount, takeCount }) {
       await getMovings(commit, skipCount, takeCount);
     },
-    async [actions.CreateMoving]({ commit }, addMovingDto: AddMovingDto) {
+    async [actions.CreateMoving]({ commit }, createMovingDto: CreateMovingDto) {
       this.state.isCreateMoving = true;
-      await saveMoving(commit, addMovingDto);
+      await createMoving(commit, createMovingDto);
     },
-  },
-});
+    async [actions.CreateExpense]({ commit }, createExpenseDto: CreateExpenseDto) {
+      this.state.isCreateMoving = true;
+      await createExpense(commit, createExpenseDto);
+    },
+    async [actions.CreateIncome]({ commit }, createIncomeDto: CreateIncomeDto) {
+      this.state.isCreateMoving = true
+      await createIncome(commit, createIncomeDto)
+    }
+  }
+})

@@ -5,4 +5,6 @@ export default {
   GetWarehouseBalanceReport: "GetWarehouseBalanceReport",
   GetWarehouseInventoryItems: "GetWarehouseInventoryItems",
   CreateMoving: "CreateMoving",
+  CreateExpense: "CreateExpense",
+  CreateIncome: "CreateIncome"
 };

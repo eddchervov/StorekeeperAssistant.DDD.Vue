@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using StorekeeperAssistant.Domain.InventoryItems;
 using StorekeeperAssistant.Domain.Movings;
-using StorekeeperAssistant.Domain.Movings.WarehouseInventoryItems;
+using StorekeeperAssistant.Domain.WarehouseInventoryItems;
 using StorekeeperAssistant.Domain.Warehouses;
 using System;
 using System.Collections.Generic;
@@ -22,11 +22,6 @@ public sealed class AppDbContext : DbContext
     public AppDbContext(DbContextOptions<AppDbContext> options)
         : base(options)
     {
-    }
-
-    internal IEnumerable<object> OrderByDescending(Func<object, object> p)
-    {
-        throw new NotImplementedException();
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

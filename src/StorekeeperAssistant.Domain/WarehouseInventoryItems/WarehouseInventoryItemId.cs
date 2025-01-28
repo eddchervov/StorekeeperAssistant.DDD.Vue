@@ -1,7 +1,7 @@
 ﻿using BuildingBlocks.Domain;
 using System;
 
-namespace StorekeeperAssistant.Domain.Movings.WarehouseInventoryItems;
+namespace StorekeeperAssistant.Domain.WarehouseInventoryItems;
 
 public sealed class WarehouseInventoryItemId : EntityId
 {

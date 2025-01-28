@@ -12,7 +12,7 @@
 
 <script lang="ts">
 import { AddInventoryItemDto } from "@/models/dto/add-inventory-item-dto";
-import { AddMovingDto } from "@/models/dto/add-moving-dto";
+import { CreateIncomeDto } from "@/models/dto/create-income-dto";
 import { InventoryItemVm } from "@/models/view-models/inventory-item-vm";
 import { validationComing } from "@/store/moving-create-validation";
 import mutations from "@/store/mutations";
@@ -59,12 +59,11 @@ export default class SaveComing extends Vue {
     if (result.isError == false) {
       var addInventoryItems = this.mapToDto(inventoryItems);
       const addMovingDto = {
-        departureWarehouseId: null,
         arrivalWarehouseId: this.$store.getters.selectArrivalWarehouseId,
         inventoryItems: addInventoryItems,
-      } as AddMovingDto;
+      } as CreateIncomeDto;
 
-      this.$emit("saved", addMovingDto);
+      this.$emit("createIncome", addMovingDto);
     } else
       result.messages.forEach((x) => {
         this.$store.commit(mutations.setError, { msg: x });

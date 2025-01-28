@@ -2,31 +2,33 @@
   <div class="row mt-3">
     <div class="col-12 text-end">
       <template v-if="isMovingAndSelectDepartureAndArrival">
-        <SaveMoving :text="'Переместить'" @saved="saveMoving" />
+        <SaveMoving :text="'Переместить'" @createMoving="createMoving" />333
       </template>
 
       <template v-if="isConsumptionAndSelectDeparture">
-        <SaveMoving :text="'Убрать со склада'" @saved="saveMoving" />
+        <SaveMoving :text="'Убрать со склада'" @createExpense="createExpense" />222
       </template>
 
       <template v-if="isComingAndSelectArrival">
-        <SaveComing :text="'Добавить на склад'" @saved="saveMoving" />
+        <SaveComing :text="'Добавить на склад'" @createIncome="createIncome" />111
       </template>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { AddMovingDto } from "@/models/dto/add-moving-dto";
+import { CreateMovingDto } from "@/models/dto/create-moving-dto";
 import actions from "@/store/actions";
 import { Component, Vue } from "vue-property-decorator";
 import SaveComing from "./SaveComing.vue";
 import SaveMoving from "./SaveMoving.vue";
+import { CreateExpenseDto } from "@/models/dto/create-expense-dto";
+import { CreateIncomeDto } from "@/models/dto/create-income-dto";
 
 @Component({
   components: {
     SaveMoving,
-    SaveComing,
+    SaveComing
   },
 })
 export default class SaveForm extends Vue {
@@ -42,7 +44,7 @@ export default class SaveForm extends Vue {
   get isConsumptionAndSelectDeparture(): boolean {
     return (
       this.$store.getters.selectOperation ==
-        this.$store.state.operation.CONSUMPTION &&
+        this.$store.state.operation.EXPENSE &&
       Boolean(this.$store.state.selectDepartureWarehouseId)
     );
   }
@@ -50,13 +52,23 @@ export default class SaveForm extends Vue {
   get isComingAndSelectArrival(): boolean {
     return (
       this.$store.getters.selectOperation ==
-        this.$store.state.operation.COMING &&
+        this.$store.state.operation.INCOME &&
       Boolean(this.$store.state.selectArrivalWarehouseId)
     );
   }
 
-  async saveMoving(addMovingDto: AddMovingDto): Promise<void> {
-    await this.$store.dispatch(actions.CreateMoving, addMovingDto);
+  async createMoving(createMovingDto: CreateMovingDto): Promise<void> {
+    await this.$store.dispatch(actions.CreateMoving, createMovingDto);
+  }
+
+  
+  async createIncome(createIncomeDto: CreateIncomeDto): Promise<void> {
+    await this.$store.dispatch(actions.CreateIncome, createIncomeDto);
+  }
+
+  
+  async createExpense(createExpenseDto: CreateExpenseDto): Promise<void> {
+    await this.$store.dispatch(actions.CreateExpense, createExpenseDto);
   }
 }
 </script>

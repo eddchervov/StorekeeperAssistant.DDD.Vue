@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace StorekeeperAssistant.Domain.Movings.WarehouseInventoryItems;
+namespace StorekeeperAssistant.Domain.WarehouseInventoryItems;
 
 public sealed class WarehouseInventoryItemCount : ValueObject
 {

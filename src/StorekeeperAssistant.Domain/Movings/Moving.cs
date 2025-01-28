@@ -1,6 +1,5 @@
 ﻿using BuildingBlocks.Domain;
 using StorekeeperAssistant.Domain.Movings.MovingDetails;
-using StorekeeperAssistant.Domain.Movings.WarehouseInventoryItems;
 using StorekeeperAssistant.Domain.Warehouses;
 using System;
 using System.Collections.Generic;
@@ -10,66 +9,90 @@ namespace StorekeeperAssistant.Domain.Movings;
 
 public sealed class Moving : Entity, IAggregateRoot
 {
-    public MovingId Id { get; }
-    public DateTime TransferDate { get; }
+    public MovingId Id { get; init; }
 
-    public DepartureWarehouseId? DepartureWarehouseId { get; }
-    public ArrivalWarehouseId? ArrivalWarehouseId { get; }
+    public DateTime TransferDate { get; init; }
+
+    public DepartureWarehouseId? DepartureWarehouseId { get; init; }
+    public ArrivalWarehouseId? ArrivalWarehouseId { get; init; }
+
+    public MovementType MovementType { get; init; }
 
     private List<MovingDetail> _movingDetails;
     public IReadOnlyCollection<MovingDetail> MovingDetails => _movingDetails;
-
-    private List<WarehouseInventoryItem> _warehouseInventoryItems;
-    public IReadOnlyCollection<WarehouseInventoryItem> WarehouseInventoryItems => _warehouseInventoryItems;
 
     public bool IsDeleted { get; }
 
     #region ctor
 #nullable disable
-    private Moving() { }
+    Moving() { }
 #nullable enable
-
-    private Moving(
-        MovingId id,
-        DateTime transferDate,
-        DepartureWarehouseId? departureWarehouseId,
-        ArrivalWarehouseId? arrivalWarehouseId,
-        IEnumerable<MovingDetail> movingDetails,
-        IEnumerable<WarehouseInventoryItem> warehouseInventoryItems)
-    {
-        Id = id;
-        TransferDate = transferDate;
-
-        if (departureWarehouseId == null && arrivalWarehouseId == null)
-            throw new ArgumentException("Одновременно склад отправления и склад прибытия не может быть пустым");
-
-        if (departureWarehouseId == arrivalWarehouseId)
-            throw new ArgumentException("Склад отправления не должен быть равен складу прибытия");
-
-        DepartureWarehouseId = departureWarehouseId;
-        ArrivalWarehouseId = arrivalWarehouseId;
-
-        _movingDetails = movingDetails.Any() == false
-            ? throw new ArgumentException("Moving must contain at least 1 MovingDetail", nameof(movingDetails))
-            : movingDetails.ToList();
-
-        if (_movingDetails.GroupBy(x => x.Id.Value).Select(x => x.Count()).Any(x => x > 1))
-            throw new ArgumentException("В одном перемещении не могут быть две одинаковые номенклатуры");
-
-        _warehouseInventoryItems = warehouseInventoryItems.Any() == false
-            ? throw new ArgumentException("Moving must contain at least 1 WarehouseInventoryItems", nameof(warehouseInventoryItems))
-            : warehouseInventoryItems.ToList();
-    }
     #endregion
 
-    public static Moving Create(
+    public static Moving CreateIncome(
         MovingId id,
         DateTime transferDate,
-        DepartureWarehouseId? departureWarehouseId,
-        ArrivalWarehouseId? arrivalWarehouseId,
-        IEnumerable<MovingDetail> movingDetails,
-        IEnumerable<WarehouseInventoryItem> warehouseInventoryItems)
+        ArrivalWarehouseId arrivalWarehouseId,
+        IEnumerable<MovingDetail> movingDetails)
     {
-        return new Moving(id, transferDate, departureWarehouseId, arrivalWarehouseId, movingDetails, warehouseInventoryItems);
+        ValidationMovingDetails(movingDetails);
+
+        return new Moving
+        {
+            Id = id,
+            TransferDate = transferDate,
+            ArrivalWarehouseId = arrivalWarehouseId,
+            DepartureWarehouseId = null,
+            MovementType = MovementType.Income,
+            _movingDetails = movingDetails.ToList()
+        };
+    }
+
+    public static Moving CreateExpense(
+        MovingId id,
+        DateTime transferDate,
+        DepartureWarehouseId departureWarehouseId,
+        IEnumerable<MovingDetail> movingDetails)
+    {
+        ValidationMovingDetails(movingDetails);
+
+        return new Moving
+        {
+            Id = id,
+            TransferDate = transferDate,
+            ArrivalWarehouseId = null,
+            DepartureWarehouseId = departureWarehouseId,
+            MovementType = MovementType.Expense,
+            _movingDetails = movingDetails.ToList()
+        };
+    }
+
+    public static Moving CreateMoving(
+        MovingId id,
+        DateTime transferDate,
+        DepartureWarehouseId departureWarehouseId,
+        ArrivalWarehouseId arrivalWarehouseId,
+        IEnumerable<MovingDetail> movingDetails)
+    {
+        ValidationMovingDetails(movingDetails);
+
+        return new Moving
+        {
+            Id = id,
+            TransferDate = transferDate,
+            DepartureWarehouseId = departureWarehouseId,
+            ArrivalWarehouseId = arrivalWarehouseId,
+            MovementType = MovementType.Moving,
+            _movingDetails = movingDetails.ToList()
+        };
+    }
+
+    private static void ValidationMovingDetails(IEnumerable<MovingDetail> movingDetails)
+    {
+        if (movingDetails.Any() == false)
+            throw new ArgumentException("Moving must contain at least 1 MovingDetail", nameof(movingDetails));
+
+        if (movingDetails.GroupBy(x => x.Id.Value).Select(x => x.Count()).Any(x => x > 1))
+            throw new ArgumentException("В одном перемещении не могут быть две одинаковые номенклатуры");
     }
 }

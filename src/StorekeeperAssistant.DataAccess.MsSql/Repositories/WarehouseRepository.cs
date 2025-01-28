@@ -22,8 +22,8 @@ public sealed class WarehouseRepository : IWarehouseRepository
         return await _context.Warehouses.Where(x => warehouseIds.Contains(x.Id) && x.IsDeleted == false).ToListAsync();
     }
 
-    public async Task<Warehouse?> GetById(WarehouseId warehouseId)
+    public Task<Warehouse?> GetById(WarehouseId warehouseId)
     {
-        return await _context.Warehouses.FirstOrDefaultAsync(x => x.Id == warehouseId && x.IsDeleted == false);
+        return _context.Warehouses.FirstOrDefaultAsync(x => x.Id == warehouseId && x.IsDeleted == false);
     }
 }

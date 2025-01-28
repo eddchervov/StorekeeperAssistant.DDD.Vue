@@ -1,8 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using StorekeeperAssistant.Domain.InventoryItems;
-using StorekeeperAssistant.Domain.Movings.WarehouseInventoryItems;
+using StorekeeperAssistant.Domain.WarehouseInventoryItems;
 using StorekeeperAssistant.Domain.Warehouses;
 using StorekeeperAssistant.UseCases.Interfaces;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -17,7 +18,17 @@ public sealed class WarehouseInventoryItemRepository : IWarehouseInventoryItemRe
         _context = context;
     }
 
-    public Task<WarehouseInventoryItem?> Get(WarehouseId warehouseId, InventoryItemId inventoryItemId)
+    public void Add(WarehouseInventoryItem warehouseInventoryItem)
+    {
+        _context.WarehouseInventoryItems.Add(warehouseInventoryItem);
+    }
+
+    public void AddRange(IEnumerable<WarehouseInventoryItem> warehouseInventoryItems)
+    {
+        _context.WarehouseInventoryItems.AddRange(warehouseInventoryItems);
+    }
+
+    public Task<WarehouseInventoryItem?> GetLast(WarehouseId warehouseId, InventoryItemId inventoryItemId)
     {
         return _context.WarehouseInventoryItems
            .OrderByDescending(x => x.Date)

@@ -10,6 +10,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using StorekeeperAssistant.DataAccess;
 using StorekeeperAssistant.DataAccess.Repositories;
+using StorekeeperAssistant.Domain.Services;
 using StorekeeperAssistant.UseCases.Interfaces;
 using StorekeeperAssistant.UseCases.InventoryItems.Queries.GetInventoryItems;
 using System.Reflection;
@@ -58,10 +59,15 @@ public class Startup
 
         services.AddMediatR(typeof(GetInventoryItemsQueryHandler));
 
+        services.AddScoped(typeof(IPipelineBehavior<,>), typeof(SaveDataDecorator<,>));
+
         services.AddScoped<IMovingRepository, MovingRepository>();
         services.AddScoped<IWarehouseRepository, WarehouseRepository>();
         services.AddScoped<IWarehouseInventoryItemRepository, WarehouseInventoryItemRepository>();
         services.AddScoped<IInventoryItemRepository, InventoryItemRepository>();
+        services.AddScoped<IInventoryItemRepository, InventoryItemRepository>();
+        services.AddScoped<WarehouseInventoryItemService>();
+        
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

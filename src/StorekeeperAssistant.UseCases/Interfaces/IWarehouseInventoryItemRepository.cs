@@ -1,11 +1,14 @@
 ﻿using StorekeeperAssistant.Domain.InventoryItems;
-using StorekeeperAssistant.Domain.Movings.WarehouseInventoryItems;
+using StorekeeperAssistant.Domain.WarehouseInventoryItems;
 using StorekeeperAssistant.Domain.Warehouses;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace StorekeeperAssistant.UseCases.Interfaces;
 
 public interface IWarehouseInventoryItemRepository
 {
-    Task<WarehouseInventoryItem?> Get(WarehouseId warehouseId, InventoryItemId inventoryItemId);
+    void Add(WarehouseInventoryItem warehouseInventoryItem);
+    void AddRange(IEnumerable<WarehouseInventoryItem> warehouseInventoryItems);
+    Task<WarehouseInventoryItem?> GetLast(WarehouseId warehouseId, InventoryItemId inventoryItemId);
 }

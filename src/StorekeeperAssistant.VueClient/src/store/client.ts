@@ -1,34 +1,24 @@
-import { AddMovingDto } from "@/models/dto/add-moving-dto";
-import axios from "axios";
-import api from "./api";
+import { CreateMovingDto } from "@/models/dto/create-moving-dto"
+import axios from "axios"
+import api from "./api"
+import { CreateExpenseDto } from "@/models/dto/create-expense-dto"
+import { CreateIncomeDto } from "@/models/dto/create-income-dto"
 
-/**
- * Клиент взаимодействия с сервером
- */
 export default {
-  /**
-   * Получить склады
-   */
   getWarehouses: () => axios.get(api.GetWarehouses),
-  /**
-   * Получить номенклатуры
-   */
   getInventoryItems: () => axios.get(api.GetInventoryItems),
-  /**
-   * Получить перемещения
-   */
   getMovings: (skipCount: number, takeCount: number) =>
     axios.get(api.GetMovings + "/" + skipCount + "/" + takeCount),
-  /**
-   * Получить остатки склада
-   */
   getWarehouseBalanceReport: (warehouseId: string, date: string | null) =>
     axios.get(
       api.GetWarehouseBalanceReport + "/" + warehouseId + "/" + (date ?? "")
     ),
-  /**
-   * Создать перемещение
-   */
-  createMoving: (addMovingDto: AddMovingDto) =>
-    axios.post(api.CreateMoving, addMovingDto),
-};
+  createMoving: (createMovingDto: CreateMovingDto) =>
+    axios.post(api.CreateMoving, createMovingDto),
+
+  createExpense: (createExpenseDto: CreateExpenseDto) =>
+    axios.post(api.CreateExpense, createExpenseDto),
+
+  createIncome: (createIncomeDto: CreateIncomeDto) =>
+    axios.post(api.CreateIncome, createIncomeDto),
+}

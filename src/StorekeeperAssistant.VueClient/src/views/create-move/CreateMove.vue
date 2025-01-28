@@ -3,11 +3,11 @@
     <h4>Создание перемещения</h4>
     <hr class="mb-4" />
     <SelectOperation />
-    <template v-if="isComing">
-      <ComingForm />
-    </template>
-    <template v-if="isConsumption">
+    <template v-if="isExpense">
       <ConsumptionForm />
+    </template>
+    <template v-if="isIncome">
+      <ComingForm />
     </template>
     <template v-if="isMoving">
       <MovingForm />
@@ -17,12 +17,12 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import ComingForm from "./controls/ComingForm.vue";
-import ConsumptionForm from "./controls/ConsumptionForm.vue";
-import MovingForm from "./controls/MovingForm.vue";
-import SaveForm from "./controls/SaveForm.vue";
-import SelectOperation from "./controls/SelectOperation.vue";
+import { Component, Vue } from "vue-property-decorator"
+import ComingForm from "./controls/ComingForm.vue"
+import ConsumptionForm from "./controls/ConsumptionForm.vue"
+import MovingForm from "./controls/MovingForm.vue"
+import SaveForm from "./controls/SaveForm.vue"
+import SelectOperation from "./controls/SelectOperation.vue"
 @Component({
   components: {
     SelectOperation,
@@ -33,16 +33,15 @@ import SelectOperation from "./controls/SelectOperation.vue";
   },
 })
 export default class CreateMove extends Vue {
-  get isComing(): boolean {
+  get isIncome(): boolean {
     return (
-      this.$store.getters.selectOperation == this.$store.state.operation.COMING
+      this.$store.getters.selectOperation == this.$store.state.operation.INCOME
     );
   }
 
-  get isConsumption(): boolean {
+  get isExpense(): boolean {
     return (
-      this.$store.getters.selectOperation ==
-      this.$store.state.operation.CONSUMPTION
+      this.$store.getters.selectOperation == this.$store.state.operation.EXPENSE
     );
   }
 

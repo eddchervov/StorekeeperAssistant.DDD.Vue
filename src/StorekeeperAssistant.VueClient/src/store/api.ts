@@ -26,8 +26,18 @@ export default {
    */
   WarehouseInventoryItems: serverPath + "api/warehouse-balance-report",
 
-  /**
+    /**
    * Создать перемещение
    */
-  CreateMoving: serverPath + "api/movings",
+    CreateMoving: serverPath + "api/movings/create-moving",
+
+      /**
+   * Создать приход
+   */
+      CreateExpense: serverPath + "api/movings/create-expense",
+
+    /**
+   * Создать расход
+   */
+    CreateIncome: serverPath + "api/movings/create-income",
 };

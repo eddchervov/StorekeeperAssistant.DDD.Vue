@@ -1,7 +1,8 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using StorekeeperAssistant.UseCases.Movings.Commands.AddMoving;
-using StorekeeperAssistant.UseCases.Movings.Commands.AddMoving.Dtos;
+using StorekeeperAssistant.UseCases.Movings.Commands.CreateExpense;
+using StorekeeperAssistant.UseCases.Movings.Commands.CreateIncome;
+using StorekeeperAssistant.UseCases.Movings.Commands.CreateMoving;
 using StorekeeperAssistant.UseCases.Movings.Queries.GetMovings;
 using StorekeeperAssistant.UseCases.Movings.Queries.GetMovings.Dtos;
 using System;
@@ -26,12 +27,32 @@ public sealed class MovingController : ControllerBase
         return await _sender.Send(new GetMovingsQuery(skipCount, takeCount));
     }
 
-    [HttpPost]
-    public async Task<Guid> Add([FromBody] AddMovingDto request)
+    [HttpPost("create-moving")]
+    public async Task<Guid> CreateMoving([FromBody] CreateMovingDto request)
     {
-        return await _sender.Send(new AddMovingCommand
+        return await _sender.Send(new CreateMovingCommand
         {
             DepartureWarehouseId = request.DepartureWarehouseId,
+            ArrivalWarehouseId = request.ArrivalWarehouseId,
+            InventoryItems = request.InventoryItems
+        });
+    }
+
+    [HttpPost("create-expense")]
+    public async Task<Guid> CreateExpense([FromBody] CreateExpenseDto request)
+    {
+        return await _sender.Send(new CreateExpenseCommand
+        {
+            DepartureWarehouseId = request.DepartureWarehouseId,
+            InventoryItems = request.InventoryItems
+        });
+    }
+
+    [HttpPost("create-income")]
+    public async Task<Guid> CreateIncome([FromBody] CreateIncomeDto request)
+    {
+        return await _sender.Send(new CreateIncomeCommand
+        {
             ArrivalWarehouseId = request.ArrivalWarehouseId,
             InventoryItems = request.InventoryItems
         });

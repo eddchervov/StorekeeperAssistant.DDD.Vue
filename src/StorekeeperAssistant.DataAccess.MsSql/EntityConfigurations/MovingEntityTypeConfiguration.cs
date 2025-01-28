@@ -37,6 +37,8 @@ sealed class MovingEntityTypeConfiguration : IEntityTypeConfiguration<Moving>
 
         builder.Property(b => b.IsDeleted).HasColumnName("IsDeleted");
 
+        builder.Property(b => b.MovementType).HasColumnName("MovementType");
+
         builder.HasMany(x => x.MovingDetails)
            .WithOne()
            .HasForeignKey("MovingId")

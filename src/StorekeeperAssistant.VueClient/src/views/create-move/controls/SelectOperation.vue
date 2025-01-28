@@ -18,15 +18,16 @@
 </template>
 
 <script lang="ts">
-import mutations from "@/store/mutations";
-import { Component, Vue } from "vue-property-decorator";
+import mutations from "@/store/mutations"
+import { Component, Vue } from "vue-property-decorator"
+
 @Component({})
 export default class SelectOperation extends Vue {
   get selectOperation(): number | null {
-    return this.$store.getters.selectOperation;
+    return this.$store.getters.selectOperation
   }
   set selectOperation(value: number | null) {
-    this.$store.commit(mutations.changeSelectOperation, value);
+    this.$store.commit(mutations.changeSelectOperation, value)
   }
 }
 </script>
