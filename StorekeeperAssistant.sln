@@ -44,6 +44,26 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Server", "Server", "{7D538F
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Clients", "Clients", "{8422516D-BD63-46F9-BFE8-8DC0661D79BA}"
 EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "StorekeeperAssistant.Vue3Client", "src\StorekeeperAssistant.Vue3Client\", "{E25FE543-75F9-4D63-8E4E-256E9CB67BFE}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_63979"
+		Debug.AspNetCompiler.PhysicalPath = "src\StorekeeperAssistant.Vue3Client\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_63979\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_63979"
+		Release.AspNetCompiler.PhysicalPath = "src\StorekeeperAssistant.Vue3Client\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_63979\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "63979"
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -82,12 +102,17 @@ Global
 		{626D6376-844D-484C-92F8-8EE1FFCDAE88}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{626D6376-844D-484C-92F8-8EE1FFCDAE88}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{626D6376-844D-484C-92F8-8EE1FFCDAE88}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{E25FE543-75F9-4D63-8E4E-256E9CB67BFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E25FE543-75F9-4D63-8E4E-256E9CB67BFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E25FE543-75F9-4D63-8E4E-256E9CB67BFE}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{E25FE543-75F9-4D63-8E4E-256E9CB67BFE}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{FEF63B68-3E57-4EA1-814C-44A14120E06F} = {7D538FAB-C667-43E0-A21B-1E963D7B10BB}
+		{58CF44D6-BA40-47FF-8F2C-9B85004C88E1} = {7D538FAB-C667-43E0-A21B-1E963D7B10BB}
 		{0EE67F48-A691-4363-9773-BBEE1800CEAD} = {58CF44D6-BA40-47FF-8F2C-9B85004C88E1}
 		{6CAF5AC0-EBF0-40A1-9C25-A57D7E162296} = {58CF44D6-BA40-47FF-8F2C-9B85004C88E1}
 		{F69D10D9-03E2-4514-A1FF-5B3F2FC4122C} = {7D538FAB-C667-43E0-A21B-1E963D7B10BB}
@@ -95,6 +120,7 @@ Global
 		{780530CB-0998-468E-916D-51D276E217B5} = {7D538FAB-C667-43E0-A21B-1E963D7B10BB}
 		{32FCBD17-BBDE-440F-8E93-BEAA01E6C1D6} = {7D538FAB-C667-43E0-A21B-1E963D7B10BB}
 		{626D6376-844D-484C-92F8-8EE1FFCDAE88} = {8422516D-BD63-46F9-BFE8-8DC0661D79BA}
+		{E25FE543-75F9-4D63-8E4E-256E9CB67BFE} = {8422516D-BD63-46F9-BFE8-8DC0661D79BA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BADC6706-599E-43D1-808D-23329BC1648A}
