@@ -18,11 +18,14 @@ public class Program
         {
             logger.Debug("init main");
 
-            var host = CreateHostBuilder(args).Build();
-
+            var host = CreateHostBuilder(args)
+                .Build();
+            
             InitializationDb(host);
 
             host.Run();
+
+            logger.Info("application is running");
         }
         catch (Exception ex)
         {
@@ -54,6 +57,8 @@ public class Program
         Host.CreateDefaultBuilder(args)
             .ConfigureWebHostDefaults(webBuilder =>
             {
-                webBuilder.UseStartup<Startup>();
+                webBuilder
+                .UseUrls("http://*:5000")
+                .UseStartup<Startup>();
             });
 }

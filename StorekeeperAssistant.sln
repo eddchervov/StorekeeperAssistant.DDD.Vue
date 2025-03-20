@@ -3,66 +3,79 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35122.118
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StorekeeperAssistant.Domain", "src\StorekeeperAssistant.Domain\StorekeeperAssistant.Domain.csproj", "{FEF63B68-3E57-4EA1-814C-44A14120E06F}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BuildingBlocks", "BuildingBlocks", "{58CF44D6-BA40-47FF-8F2C-9B85004C88E1}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuildingBlocks.Domain", "src\BuildingBlocks.Domain\BuildingBlocks.Domain.csproj", "{0EE67F48-A691-4363-9773-BBEE1800CEAD}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuildingBlocks.Infrastructure", "src\BuildingBlocks.Infrastructure\BuildingBlocks.Infrastructure.csproj", "{6CAF5AC0-EBF0-40A1-9C25-A57D7E162296}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StorekeeperAssistant.DataAccess", "src\StorekeeperAssistant.DataAccess.MsSql\StorekeeperAssistant.DataAccess.csproj", "{F69D10D9-03E2-4514-A1FF-5B3F2FC4122C}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuildingBlocks.UseCases", "src\BuildingBlocks.UseCases\BuildingBlocks.UseCases.csproj", "{F87EE24B-885A-4991-B178-02FFB3BAAF56}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StorekeeperAssistant.UseCases", "src\StorekeeperAssistant.UseCases\StorekeeperAssistant.UseCases.csproj", "{780530CB-0998-468E-916D-51D276E217B5}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StorekeeperAssistant.Web", "src\StorekeeperAssistant.Web\StorekeeperAssistant.Web.csproj", "{32FCBD17-BBDE-440F-8E93-BEAA01E6C1D6}"
-EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "StorekeeperAssistant.VueClient", "src\StorekeeperAssistant.VueClient\", "{626D6376-844D-484C-92F8-8EE1FFCDAE88}"
-	ProjectSection(WebsiteProperties) = preProject
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
-		Debug.AspNetCompiler.VirtualPath = "/localhost_49609"
-		Debug.AspNetCompiler.PhysicalPath = "src\StorekeeperAssistant.VueClient\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_49609\"
-		Debug.AspNetCompiler.Updateable = "true"
-		Debug.AspNetCompiler.ForceOverwrite = "true"
-		Debug.AspNetCompiler.FixedNames = "false"
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/localhost_49609"
-		Release.AspNetCompiler.PhysicalPath = "src\StorekeeperAssistant.VueClient\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_49609\"
-		Release.AspNetCompiler.Updateable = "true"
-		Release.AspNetCompiler.ForceOverwrite = "true"
-		Release.AspNetCompiler.FixedNames = "false"
-		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "49609"
-		SlnRelativePath = "src\StorekeeperAssistant.VueClient\"
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Server", "Server", "{7D538FAB-C667-43E0-A21B-1E963D7B10BB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Clients", "Clients", "{8422516D-BD63-46F9-BFE8-8DC0661D79BA}"
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "StorekeeperAssistant.Vue3Client", "src\StorekeeperAssistant.Vue3Client\", "{E25FE543-75F9-4D63-8E4E-256E9CB67BFE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuildingBlocks.Domain", "src\Server\BuildingBlocks.Domain\BuildingBlocks.Domain.csproj", "{7E95BB46-4F5E-4E6E-A99A-269B32DE36E7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuildingBlocks.Infrastructure", "src\Server\BuildingBlocks.Infrastructure\BuildingBlocks.Infrastructure.csproj", "{D3ADE3C2-047C-4A6B-82B4-1DCAE783E898}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuildingBlocks.UseCases", "src\Server\BuildingBlocks.UseCases\BuildingBlocks.UseCases.csproj", "{24E79CD0-F20D-45E4-B62A-561DA4782FBF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StorekeeperAssistant.DataAccess", "src\Server\StorekeeperAssistant.DataAccess.MsSql\StorekeeperAssistant.DataAccess.csproj", "{E4268829-0B60-46FF-BD25-E9C06D250F8B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StorekeeperAssistant.Domain", "src\Server\StorekeeperAssistant.Domain\StorekeeperAssistant.Domain.csproj", "{917B2659-5A48-4CED-8713-E90890408274}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StorekeeperAssistant.UseCases", "src\Server\StorekeeperAssistant.UseCases\StorekeeperAssistant.UseCases.csproj", "{0AB97058-534C-45B2-8147-6D53D98E4433}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StorekeeperAssistant.Web", "src\Server\StorekeeperAssistant.Web\StorekeeperAssistant.Web.csproj", "{8D30E5D8-1406-421D-8ECD-E12B15FF0275}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "StorekeeperAssistant.VueClient(1)", "src\Clients\StorekeeperAssistant.VueClient\", "{DE8017AF-BA28-43FA-8B89-EB92558AB685}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
-		Debug.AspNetCompiler.VirtualPath = "/localhost_63979"
-		Debug.AspNetCompiler.PhysicalPath = "src\StorekeeperAssistant.Vue3Client\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_63979\"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_60817"
+		Debug.AspNetCompiler.PhysicalPath = "src\Clients\StorekeeperAssistant.VueClient\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_60817\"
 		Debug.AspNetCompiler.Updateable = "true"
 		Debug.AspNetCompiler.ForceOverwrite = "true"
 		Debug.AspNetCompiler.FixedNames = "false"
 		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/localhost_63979"
-		Release.AspNetCompiler.PhysicalPath = "src\StorekeeperAssistant.Vue3Client\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_63979\"
+		Release.AspNetCompiler.VirtualPath = "/localhost_60817"
+		Release.AspNetCompiler.PhysicalPath = "src\Clients\StorekeeperAssistant.VueClient\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_60817\"
 		Release.AspNetCompiler.Updateable = "true"
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "63979"
-		SlnRelativePath = "src\StorekeeperAssistant.Vue3Client\"
+		VWDPort = "60817"
+		SlnRelativePath = "src\Clients\StorekeeperAssistant.VueClient\"
+	EndProjectSection
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "StorekeeperAssistant.Vue3Client(1)", "src\Clients\StorekeeperAssistant.Vue3Client\", "{911D47FB-F1CC-494C-BE3C-428AFD04FFFA}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_60888"
+		Debug.AspNetCompiler.PhysicalPath = "src\Clients\StorekeeperAssistant.Vue3Client\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_60888\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_60888"
+		Release.AspNetCompiler.PhysicalPath = "src\Clients\StorekeeperAssistant.Vue3Client\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_60888\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "60888"
+		SlnRelativePath = "src\Clients\StorekeeperAssistant.Vue3Client\"
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Server Items", "Server Items", "{D1150874-7331-4EC1-A606-D90B9E97CBE0}"
+	ProjectSection(SolutionItems) = preProject
+		src\Server\Dockerfile = src\Server\Dockerfile
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{61CB86BF-EF39-4EF8-B8C3-223497847658}"
+	ProjectSection(SolutionItems) = preProject
+		.dockerignore = .dockerignore
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		README.md = README.md
 	EndProjectSection
 EndProject
 Global
@@ -71,57 +84,58 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{FEF63B68-3E57-4EA1-814C-44A14120E06F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FEF63B68-3E57-4EA1-814C-44A14120E06F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FEF63B68-3E57-4EA1-814C-44A14120E06F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FEF63B68-3E57-4EA1-814C-44A14120E06F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0EE67F48-A691-4363-9773-BBEE1800CEAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0EE67F48-A691-4363-9773-BBEE1800CEAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0EE67F48-A691-4363-9773-BBEE1800CEAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0EE67F48-A691-4363-9773-BBEE1800CEAD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6CAF5AC0-EBF0-40A1-9C25-A57D7E162296}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6CAF5AC0-EBF0-40A1-9C25-A57D7E162296}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6CAF5AC0-EBF0-40A1-9C25-A57D7E162296}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6CAF5AC0-EBF0-40A1-9C25-A57D7E162296}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F69D10D9-03E2-4514-A1FF-5B3F2FC4122C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F69D10D9-03E2-4514-A1FF-5B3F2FC4122C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F69D10D9-03E2-4514-A1FF-5B3F2FC4122C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F69D10D9-03E2-4514-A1FF-5B3F2FC4122C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F87EE24B-885A-4991-B178-02FFB3BAAF56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F87EE24B-885A-4991-B178-02FFB3BAAF56}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F87EE24B-885A-4991-B178-02FFB3BAAF56}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F87EE24B-885A-4991-B178-02FFB3BAAF56}.Release|Any CPU.Build.0 = Release|Any CPU
-		{780530CB-0998-468E-916D-51D276E217B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{780530CB-0998-468E-916D-51D276E217B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{780530CB-0998-468E-916D-51D276E217B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{780530CB-0998-468E-916D-51D276E217B5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{32FCBD17-BBDE-440F-8E93-BEAA01E6C1D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{32FCBD17-BBDE-440F-8E93-BEAA01E6C1D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{32FCBD17-BBDE-440F-8E93-BEAA01E6C1D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{32FCBD17-BBDE-440F-8E93-BEAA01E6C1D6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{626D6376-844D-484C-92F8-8EE1FFCDAE88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{626D6376-844D-484C-92F8-8EE1FFCDAE88}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{626D6376-844D-484C-92F8-8EE1FFCDAE88}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{626D6376-844D-484C-92F8-8EE1FFCDAE88}.Release|Any CPU.Build.0 = Debug|Any CPU
-		{E25FE543-75F9-4D63-8E4E-256E9CB67BFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E25FE543-75F9-4D63-8E4E-256E9CB67BFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E25FE543-75F9-4D63-8E4E-256E9CB67BFE}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{E25FE543-75F9-4D63-8E4E-256E9CB67BFE}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{7E95BB46-4F5E-4E6E-A99A-269B32DE36E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E95BB46-4F5E-4E6E-A99A-269B32DE36E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E95BB46-4F5E-4E6E-A99A-269B32DE36E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E95BB46-4F5E-4E6E-A99A-269B32DE36E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3ADE3C2-047C-4A6B-82B4-1DCAE783E898}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3ADE3C2-047C-4A6B-82B4-1DCAE783E898}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3ADE3C2-047C-4A6B-82B4-1DCAE783E898}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3ADE3C2-047C-4A6B-82B4-1DCAE783E898}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24E79CD0-F20D-45E4-B62A-561DA4782FBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24E79CD0-F20D-45E4-B62A-561DA4782FBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24E79CD0-F20D-45E4-B62A-561DA4782FBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24E79CD0-F20D-45E4-B62A-561DA4782FBF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4268829-0B60-46FF-BD25-E9C06D250F8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4268829-0B60-46FF-BD25-E9C06D250F8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4268829-0B60-46FF-BD25-E9C06D250F8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4268829-0B60-46FF-BD25-E9C06D250F8B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{917B2659-5A48-4CED-8713-E90890408274}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{917B2659-5A48-4CED-8713-E90890408274}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{917B2659-5A48-4CED-8713-E90890408274}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{917B2659-5A48-4CED-8713-E90890408274}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0AB97058-534C-45B2-8147-6D53D98E4433}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AB97058-534C-45B2-8147-6D53D98E4433}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AB97058-534C-45B2-8147-6D53D98E4433}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AB97058-534C-45B2-8147-6D53D98E4433}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D30E5D8-1406-421D-8ECD-E12B15FF0275}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D30E5D8-1406-421D-8ECD-E12B15FF0275}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D30E5D8-1406-421D-8ECD-E12B15FF0275}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D30E5D8-1406-421D-8ECD-E12B15FF0275}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE8017AF-BA28-43FA-8B89-EB92558AB685}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE8017AF-BA28-43FA-8B89-EB92558AB685}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE8017AF-BA28-43FA-8B89-EB92558AB685}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE8017AF-BA28-43FA-8B89-EB92558AB685}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{911D47FB-F1CC-494C-BE3C-428AFD04FFFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{911D47FB-F1CC-494C-BE3C-428AFD04FFFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{911D47FB-F1CC-494C-BE3C-428AFD04FFFA}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{911D47FB-F1CC-494C-BE3C-428AFD04FFFA}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{FEF63B68-3E57-4EA1-814C-44A14120E06F} = {7D538FAB-C667-43E0-A21B-1E963D7B10BB}
 		{58CF44D6-BA40-47FF-8F2C-9B85004C88E1} = {7D538FAB-C667-43E0-A21B-1E963D7B10BB}
-		{0EE67F48-A691-4363-9773-BBEE1800CEAD} = {58CF44D6-BA40-47FF-8F2C-9B85004C88E1}
-		{6CAF5AC0-EBF0-40A1-9C25-A57D7E162296} = {58CF44D6-BA40-47FF-8F2C-9B85004C88E1}
-		{F69D10D9-03E2-4514-A1FF-5B3F2FC4122C} = {7D538FAB-C667-43E0-A21B-1E963D7B10BB}
-		{F87EE24B-885A-4991-B178-02FFB3BAAF56} = {58CF44D6-BA40-47FF-8F2C-9B85004C88E1}
-		{780530CB-0998-468E-916D-51D276E217B5} = {7D538FAB-C667-43E0-A21B-1E963D7B10BB}
-		{32FCBD17-BBDE-440F-8E93-BEAA01E6C1D6} = {7D538FAB-C667-43E0-A21B-1E963D7B10BB}
-		{626D6376-844D-484C-92F8-8EE1FFCDAE88} = {8422516D-BD63-46F9-BFE8-8DC0661D79BA}
-		{E25FE543-75F9-4D63-8E4E-256E9CB67BFE} = {8422516D-BD63-46F9-BFE8-8DC0661D79BA}
+		{7E95BB46-4F5E-4E6E-A99A-269B32DE36E7} = {58CF44D6-BA40-47FF-8F2C-9B85004C88E1}
+		{D3ADE3C2-047C-4A6B-82B4-1DCAE783E898} = {58CF44D6-BA40-47FF-8F2C-9B85004C88E1}
+		{24E79CD0-F20D-45E4-B62A-561DA4782FBF} = {58CF44D6-BA40-47FF-8F2C-9B85004C88E1}
+		{E4268829-0B60-46FF-BD25-E9C06D250F8B} = {7D538FAB-C667-43E0-A21B-1E963D7B10BB}
+		{917B2659-5A48-4CED-8713-E90890408274} = {7D538FAB-C667-43E0-A21B-1E963D7B10BB}
+		{0AB97058-534C-45B2-8147-6D53D98E4433} = {7D538FAB-C667-43E0-A21B-1E963D7B10BB}
+		{8D30E5D8-1406-421D-8ECD-E12B15FF0275} = {7D538FAB-C667-43E0-A21B-1E963D7B10BB}
+		{DE8017AF-BA28-43FA-8B89-EB92558AB685} = {8422516D-BD63-46F9-BFE8-8DC0661D79BA}
+		{911D47FB-F1CC-494C-BE3C-428AFD04FFFA} = {8422516D-BD63-46F9-BFE8-8DC0661D79BA}
+		{D1150874-7331-4EC1-A606-D90B9E97CBE0} = {7D538FAB-C667-43E0-A21B-1E963D7B10BB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BADC6706-599E-43D1-808D-23329BC1648A}

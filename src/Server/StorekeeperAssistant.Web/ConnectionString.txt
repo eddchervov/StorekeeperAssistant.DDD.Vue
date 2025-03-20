@@ -1,4 +1,6 @@
  add to manage user secrets
  {
    "StorekeeperAssistant:ConnectionString": "Server=localdb;Database=StorekeeperAssistant;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True"
+
+   "StorekeeperAssistant:ConnectionString": "Server=host.docker.internal,1433;Database=StorekeeperAssistant;User Id=sa;Password=password;TrustServerCertificate=True;"
  }
