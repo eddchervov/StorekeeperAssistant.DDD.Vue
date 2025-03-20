@@ -1,7 +1,8 @@
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using NLog.Web;
+using Serilog;
 using StorekeeperAssistant.DataAccess;
 using System;
 
@@ -13,29 +14,42 @@ public class Program
 {
     public static void Main(string[] args)
     {
-        var logger = NLogBuilder.ConfigureNLog("nlog.config").GetCurrentClassLogger();
         try
         {
-            logger.Debug("init main");
+            ConfigureLogging();
 
             var host = CreateHostBuilder(args)
                 .Build();
             
             InitializationDb(host);
 
+            Log.Logger.Information("StorekeeperAssistant.Web application is running");
             host.Run();
-
-            logger.Info("application is running");
         }
         catch (Exception ex)
         {
-            logger.Error(ex, "Stopped program because of exception");
+            Log.Logger.Error("StorekeeperAssistant.Web stopped program because of exception");
             throw;
         }
-        finally
+    }
+
+    private static void ConfigureLogging()
+    {
+        var configuration = new ConfigurationBuilder()
+            .AddJsonFile("appsettings.json")
+            .Build();
+
+        var loggerConfiguration = new LoggerConfiguration().Enrich.FromLogContext();
+
+        if (configuration["Seq:Url"] is { } seqUrl)
         {
-            NLog.LogManager.Shutdown();
+            loggerConfiguration = loggerConfiguration
+                .WriteTo.Seq(seqUrl);
         }
+
+        Log.Logger = loggerConfiguration
+            .ReadFrom.Configuration(configuration)
+            .CreateLogger();
     }
 
     private static void InitializationDb(IHost host)
@@ -55,6 +69,7 @@ public class Program
 
     public static IHostBuilder CreateHostBuilder(string[] args) =>
         Host.CreateDefaultBuilder(args)
+            .UseSerilog()
             .ConfigureWebHostDefaults(webBuilder =>
             {
                 webBuilder
