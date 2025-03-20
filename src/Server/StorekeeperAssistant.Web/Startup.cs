@@ -11,8 +11,8 @@ using Microsoft.OpenApi.Models;
 using StorekeeperAssistant.DataAccess;
 using StorekeeperAssistant.DataAccess.Repositories;
 using StorekeeperAssistant.Domain.Services;
+using StorekeeperAssistant.UseCases;
 using StorekeeperAssistant.UseCases.Interfaces;
-using StorekeeperAssistant.UseCases.InventoryItems.Queries.GetInventoryItems;
 using System.Reflection;
 
 namespace StorekeeperAssistant.Web;
@@ -47,7 +47,7 @@ public class Startup
         });
 
         services.AddScoped<ISqlConnectionFactory>(x => new SqlConnectionFactory(Configuration[ConfigurationKey]!));
-
+        
         services.AddDbContext<AppDbContext>(options =>
             options.UseSqlServer(
             Configuration[ConfigurationKey]
@@ -57,7 +57,7 @@ public class Startup
                 sqlOptions.MigrationsAssembly(typeof(Startup).GetTypeInfo().Assembly.GetName().Name);
             }));
 
-        services.AddMediatR(typeof(GetInventoryItemsQueryHandler));
+        services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(AssemblyMarker).Assembly));
 
         services.AddScoped(typeof(IPipelineBehavior<,>), typeof(SaveDataDecorator<,>));
 
