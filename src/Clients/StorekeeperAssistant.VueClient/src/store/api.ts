@@ -1,4 +1,4 @@
-const serverPath = "http://localhost:45210/";
+const serverPath = "http://localhost:5000/";
 
 export default {
   /**

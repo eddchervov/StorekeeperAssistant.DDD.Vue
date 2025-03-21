@@ -2,15 +2,15 @@
   <div class="row mt-3">
     <div class="col-12 text-end">
       <template v-if="isMovingAndSelectDepartureAndArrival">
-        <SaveMoving :text="'Переместить'" @createMoving="createMoving" />333
+        <SaveMoving :text="'Переместить'" @createMoving="createMoving" />
       </template>
 
       <template v-if="isConsumptionAndSelectDeparture">
-        <SaveMoving :text="'Убрать со склада'" @createExpense="createExpense" />222
+        <SaveMoving :text="'Убрать со склада'" @createExpense="createExpense" />
       </template>
 
       <template v-if="isComingAndSelectArrival">
-        <SaveComing :text="'Добавить на склад'" @createIncome="createIncome" />111
+        <SaveComing :text="'Добавить на склад'" @createIncome="createIncome" />
       </template>
     </div>
   </div>
