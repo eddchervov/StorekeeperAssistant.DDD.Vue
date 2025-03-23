@@ -14,6 +14,7 @@
   <li>Страница создания перемещения, приход/расход (откуда, куда, список перемещаемых ТМЦ)</li>
   <li>Страница - отчет по остаткам с выбором склада и времени, на которое отображать остатки.</li>
   <li>Приложение умеет инициализировать базу при первом запуске (не менее 3-х складов и не менее 7-ми номенклатур).</li>
+  <li>В приложении есть энд-поинт на заполнение данными.</li>
 </ul>
 
 <br>
@@ -22,7 +23,7 @@
   <b>Стек технологий.</b>
 </p>
 <ul>
-  <li>ASP.NET Core 5.0.</li>
+  <li>.NET 9.0.</li>
   <li><b>Server: </b> Web Api (DDD, CQRS, REST API).</li>
   <li><b>Client: </b> Vue 2 + Babel + TypeScript + Router + Vuex + Eslink + доп. библиотеки
     (<a target="_blank" href="https://github.com/sagalbot/vue-select">vue-select</a>, 
@@ -30,5 +31,5 @@
     <a target="_blank" href="https://github.com/lokyoung/vuejs-paginate">vuejs-paginate</a>).
   </li>
   <li><b>База данных: </b> MsSql</li>
-  <li><b>ORM: </b> Entity Framework Core 5, Dapper</li>
+  <li><b>ORM: </b> Entity Framework Core 9, Dapper</li>
 </ul>
