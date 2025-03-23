@@ -22,27 +22,18 @@ public sealed class CreateMovingCommand : ICommand<Guid>
     public required IEnumerable<AddInventoryItemDto> InventoryItems { get; set; }
 }
 
-public sealed class CreateMovingCommandHandler : IRequestHandler<CreateMovingCommand, Guid>
+public sealed class CreateMovingCommandHandler(
+    IMovingRepository movingRepository,
+    IWarehouseRepository warehouseRepository,
+    IWarehouseInventoryItemRepository warehouseInventoryItemRepository,
+    IInventoryItemRepository inventoryItemRepository,
+    WarehouseInventoryItemService warehouseInventoryItemService) : IRequestHandler<CreateMovingCommand, Guid>
 {
-    private readonly IMovingRepository _movingRepository;
-    private readonly IWarehouseRepository _warehouseRepository;
-    private readonly IWarehouseInventoryItemRepository _warehouseInventoryItemRepository;
-    private readonly IInventoryItemRepository _inventoryItemRepository;
-    private readonly WarehouseInventoryItemService _warehouseInventoryItemService;
-
-    public CreateMovingCommandHandler(
-        IMovingRepository movingRepository,
-        IWarehouseRepository warehouseRepository,
-        IWarehouseInventoryItemRepository warehouseInventoryItemRepository,
-        IInventoryItemRepository inventoryItemRepository,
-        WarehouseInventoryItemService warehouseInventoryItemService)
-    {
-        _movingRepository = movingRepository;
-        _warehouseRepository = warehouseRepository;
-        _warehouseInventoryItemRepository = warehouseInventoryItemRepository;
-        _inventoryItemRepository = inventoryItemRepository;
-        _warehouseInventoryItemService = warehouseInventoryItemService;
-    }
+    private readonly IMovingRepository _movingRepository = movingRepository;
+    private readonly IWarehouseRepository _warehouseRepository = warehouseRepository;
+    private readonly IWarehouseInventoryItemRepository _warehouseInventoryItemRepository = warehouseInventoryItemRepository;
+    private readonly IInventoryItemRepository _inventoryItemRepository = inventoryItemRepository;
+    private readonly WarehouseInventoryItemService _warehouseInventoryItemService = warehouseInventoryItemService;
 
     public async Task<Guid> Handle(CreateMovingCommand request, CancellationToken cancellationToken)
     {

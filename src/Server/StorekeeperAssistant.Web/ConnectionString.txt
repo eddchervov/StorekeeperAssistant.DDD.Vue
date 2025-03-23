@@ -4,3 +4,10 @@
 
    "StorekeeperAssistant:ConnectionString": "Server=host.docker.internal,1433;Database=StorekeeperAssistant;User Id=sa;Password=password;TrustServerCertificate=True;"
  }
+
+
+DELETE FROM Movings
+DELETE FROM MovingDetails
+DELETE FROM InventoryItems
+DELETE FROM WarehouseInventoryItems
+DELETE FROM Warehouses

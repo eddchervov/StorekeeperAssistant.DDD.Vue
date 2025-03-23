@@ -27,7 +27,7 @@ public sealed class WarehouseInventoryItemService
         var warehouseInventoryItemCount = lastDepartureWarehouseInventoryItem.Count.Value - inventoryItemDto.Count;
         if (warehouseInventoryItemCount < 0)
             throw new ArgumentException($"Нельзя расходовать номенклатуру id={inventoryItemDto.Id} в кол-ве: {inventoryItemDto.Count}. " +
-                $"Недостаточно остатков на складе, остаток: {lastDepartureWarehouseInventoryItem.Count}");
+                $"Недостаточно остатков на складе, остаток: {lastDepartureWarehouseInventoryItem.Count.Value}");
 
         return WarehouseInventoryItem.Create(
                 new WarehouseInventoryItemId(Guid.NewGuid()),

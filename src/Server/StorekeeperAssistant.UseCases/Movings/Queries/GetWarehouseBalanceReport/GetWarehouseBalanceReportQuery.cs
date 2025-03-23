@@ -12,14 +12,10 @@ namespace StorekeeperAssistant.UseCases.Movings.Queries.GetWarehouseBalanceRepor
 
 public sealed record GetWarehouseBalanceReportQuery(Guid WarehouseId, DateTime? DateTime) : IRequest<IEnumerable<WarehouseInventoryItemDto>>;
 
-public sealed class GetWarehouseBalanceReportQueryHandler : IRequestHandler<GetWarehouseBalanceReportQuery, IEnumerable<WarehouseInventoryItemDto>>
+public sealed class GetWarehouseBalanceReportQueryHandler(ISqlConnectionFactory sqlConnectionFactory) 
+    : IRequestHandler<GetWarehouseBalanceReportQuery, IEnumerable<WarehouseInventoryItemDto>>
 {
-    private readonly ISqlConnectionFactory _sqlConnectionFactory;
-
-    public GetWarehouseBalanceReportQueryHandler(ISqlConnectionFactory sqlConnectionFactory)
-    {
-        _sqlConnectionFactory = sqlConnectionFactory;
-    }
+    private readonly ISqlConnectionFactory _sqlConnectionFactory = sqlConnectionFactory;
 
     public async Task<IEnumerable<WarehouseInventoryItemDto>> Handle(GetWarehouseBalanceReportQuery request, CancellationToken cancellationToken)
     {

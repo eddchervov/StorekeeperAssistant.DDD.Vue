@@ -24,25 +24,25 @@ public static class DbInitializer
             {
                 InventoryItem.Create(
                     new InventoryItemId(Guid.NewGuid()),
-                    new InventoryItemName("Номенклатура А")),
+                    new InventoryItemName("Яблоки")),
                 InventoryItem.Create(
                     new InventoryItemId(Guid.NewGuid()),
-                    new InventoryItemName("Номенклатура Б")),
+                    new InventoryItemName("Бананы")),
                 InventoryItem.Create(
                     new InventoryItemId(Guid.NewGuid()),
-                    new InventoryItemName("Номенклатура В")),
+                    new InventoryItemName("Картошка")),
                 InventoryItem.Create(
                     new InventoryItemId(Guid.NewGuid()),
-                    new InventoryItemName("Номенклатура Г")),
+                    new InventoryItemName("Лук")),
                 InventoryItem.Create(
                     new InventoryItemId(Guid.NewGuid()),
-                    new InventoryItemName("Номенклатура Д")),
+                    new InventoryItemName("Морковь")),
                 InventoryItem.Create(
                     new InventoryItemId(Guid.NewGuid()),
-                    new InventoryItemName("Номенклатура Е")),
+                    new InventoryItemName("Груши")),
                 InventoryItem.Create(
                     new InventoryItemId(Guid.NewGuid()),
-                    new InventoryItemName("Номенклатура Ж")),
+                    new InventoryItemName("Свекла")),
             };
 
             context.InventoryItems.AddRange(inventoryItems);
@@ -57,13 +57,37 @@ public static class DbInitializer
             {
                 Warehouse.Create(
                     new WarehouseId(Guid.NewGuid()),
-                    new WarehouseName("Склад А")),
+                    new WarehouseName("Склад г. Новосибирск")),
                 Warehouse.Create(
                     new WarehouseId(Guid.NewGuid()),
-                    new WarehouseName("Склад Б")),
+                    new WarehouseName("Склад г. Москва")),
                 Warehouse.Create(
                     new WarehouseId(Guid.NewGuid()),
-                    new WarehouseName("Склад В"))
+                    new WarehouseName("Склад г. Санкт-Петербург")),
+                Warehouse.Create(
+                    new WarehouseId(Guid.NewGuid()),
+                    new WarehouseName("Склад г. Кемерово")),
+                Warehouse.Create(
+                    new WarehouseId(Guid.NewGuid()),
+                    new WarehouseName("Склад г. Владивосток")),
+                Warehouse.Create(
+                    new WarehouseId(Guid.NewGuid()),
+                    new WarehouseName("Склад г. Красноярск")),
+                Warehouse.Create(
+                    new WarehouseId(Guid.NewGuid()),
+                    new WarehouseName("Склад г. Омск")),
+                Warehouse.Create(
+                    new WarehouseId(Guid.NewGuid()),
+                    new WarehouseName("Склад г. Сочи")),
+                Warehouse.Create(
+                    new WarehouseId(Guid.NewGuid()),
+                    new WarehouseName("Склад г. Ярославль")),
+                Warehouse.Create(
+                    new WarehouseId(Guid.NewGuid()),
+                    new WarehouseName("Склад г. Томск")),
+                Warehouse.Create(
+                    new WarehouseId(Guid.NewGuid()),
+                    new WarehouseName("Склад г. Якутск"))
             };
 
             context.Warehouses.AddRange(warehouses);

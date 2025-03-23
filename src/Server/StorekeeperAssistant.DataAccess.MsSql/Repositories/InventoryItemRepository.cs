@@ -21,4 +21,9 @@ public sealed class InventoryItemRepository : IInventoryItemRepository
     {
         return await _context.InventoryItems.Where(x => inventoryItemIds.Contains(x.Id) && x.IsDeleted == false).ToListAsync();
     }
+
+    public async Task<IEnumerable<InventoryItem>> GetAll()
+    {
+        return await _context.InventoryItems.Where(x => x.IsDeleted == false).ToListAsync();
+    }
 }

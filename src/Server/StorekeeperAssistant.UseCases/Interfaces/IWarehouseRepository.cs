@@ -8,4 +8,5 @@ public interface IWarehouseRepository
 {
     Task<IEnumerable<Warehouse>> GetByIds(IEnumerable<WarehouseId> warehouseIds);
     Task<Warehouse?> GetById(WarehouseId warehouseId);
+    Task<IEnumerable<Warehouse>> GetAll();
 }

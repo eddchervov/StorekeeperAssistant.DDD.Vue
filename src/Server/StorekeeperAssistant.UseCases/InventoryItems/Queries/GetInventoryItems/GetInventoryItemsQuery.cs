@@ -9,14 +9,10 @@ namespace StorekeeperAssistant.UseCases.InventoryItems.Queries.GetInventoryItems
 
 public sealed record GetInventoryItemsQuery(): IRequest<IEnumerable<InventoryItemDto>>;
 
-public sealed class GetInventoryItemsQueryHandler : IRequestHandler<GetInventoryItemsQuery, IEnumerable<InventoryItemDto>>
+public sealed class GetInventoryItemsQueryHandler(ISqlConnectionFactory sqlConnectionFactory) 
+    : IRequestHandler<GetInventoryItemsQuery, IEnumerable<InventoryItemDto>>
 {
-    private readonly ISqlConnectionFactory _sqlConnectionFactory;
-
-    public GetInventoryItemsQueryHandler(ISqlConnectionFactory sqlConnectionFactory)
-    {
-        _sqlConnectionFactory = sqlConnectionFactory;
-    }
+    private readonly ISqlConnectionFactory _sqlConnectionFactory = sqlConnectionFactory;
 
     public async Task<IEnumerable<InventoryItemDto>> Handle(GetInventoryItemsQuery request, CancellationToken cancellationToken)
     {

@@ -26,4 +26,10 @@ public sealed class WarehouseRepository : IWarehouseRepository
     {
         return _context.Warehouses.FirstOrDefaultAsync(x => x.Id == warehouseId && x.IsDeleted == false);
     }
+
+
+    public async Task<IEnumerable<Warehouse>> GetAll()
+    {
+        return await _context.Warehouses.Where(x => x.IsDeleted == false).ToListAsync();
+    }
 }

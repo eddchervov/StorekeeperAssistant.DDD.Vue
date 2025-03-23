@@ -7,4 +7,5 @@ namespace StorekeeperAssistant.UseCases.Interfaces;
 public interface IInventoryItemRepository
 {
     Task<IEnumerable<InventoryItem>> GetByIds(IEnumerable<InventoryItemId> inventoryItemIds);
+    Task<IEnumerable<InventoryItem>> GetAll();
 }

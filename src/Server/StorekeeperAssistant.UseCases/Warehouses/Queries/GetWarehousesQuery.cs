@@ -10,14 +10,9 @@ namespace StorekeeperAssistant.UseCases.Warehouses.Queries;
 
 public record GetWarehousesQuery(): IRequest<IEnumerable<WarehouseDto>>;
 
-public class GetWarehousesQueryHandler : IRequestHandler<GetWarehousesQuery, IEnumerable<WarehouseDto>>
+public class GetWarehousesQueryHandler(ISqlConnectionFactory sqlConnectionFactory) : IRequestHandler<GetWarehousesQuery, IEnumerable<WarehouseDto>>
 {
-    private readonly ISqlConnectionFactory _sqlConnectionFactory;
-
-    public GetWarehousesQueryHandler(ISqlConnectionFactory sqlConnectionFactory)
-    {
-        _sqlConnectionFactory = sqlConnectionFactory;
-    }
+    private readonly ISqlConnectionFactory _sqlConnectionFactory = sqlConnectionFactory;
 
     public async Task<IEnumerable<WarehouseDto>> Handle(GetWarehousesQuery request, CancellationToken cancellationToken)
     {

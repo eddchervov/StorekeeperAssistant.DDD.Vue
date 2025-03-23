@@ -11,21 +11,27 @@
           :key="moving.id + '_' + index"
         >
           <div class="card">
-            <div class="card-body">
-              <h6 class="card-title mb-3">
-                <span class="fw-550">Дата:</span>
-                {{ moving.transferDate | toLocalFormat }}
-              </h6>
-              <h6 class="card-subtitle mb-2 fw-550">
+            <div class="card-header">
+              <h5 class="mb-0">
+                <span class="fw-550">
+                  {{ moving.movementTypeText }}
+                  ({{ moving.movingDetails.length }})
+                </span>
+                от
+                <span class="fw-550">
+                  {{ moving.transferDate | toLocalFormat }}
+                </span>
+              </h5>
+            </div>
+            <div class="card-body py-1">
+              <h6 class="card-subtitle mt-1 mb-2 fw-550">
                 <template v-if="moving.departureWarehouse">
                   {{ moving.departureWarehouse.name }}
                 </template>
-                <template v-else> Извне </template>
-                <i class="fas fa-long-arrow-alt-right"></i>
+                <span v-if="isMoving(moving.movementType)">=></span>
                 <template v-if="moving.arrivalWarehouse">
                   {{ moving.arrivalWarehouse.name }}
                 </template>
-                <template v-else> Убрано со складов </template>
               </h6>
               <div class="card-text">
                 <p
@@ -33,6 +39,9 @@
                   v-for="movingDetail in moving.movingDetails"
                   :key="moving.id + '_' + movingDetail.id"
                 >
+                  <template v-if="isMoving(moving.movementType)">+-</template>
+                  <template v-if="isExpense(moving.movementType)">-</template>
+                  <template v-if="isIncome(moving.movementType)">+</template>
                   {{ movingDetail.inventoryItem.name }}:
                   {{ movingDetail.count }} шт.
                 </p>
@@ -70,6 +79,7 @@
 <script lang="ts">
 import Paging from "@/components/Paging.vue";
 import { MovingDto } from "@/models/dto/moving-dto";
+import { MovementType } from "@/models/enums/movement-type";
 import actions from "@/store/actions";
 import moment from "moment";
 import { Component, Vue } from "vue-property-decorator";
@@ -101,6 +111,16 @@ export default class MoveList extends Vue {
   }
   get isNotMovingAndIsLoadForm(): boolean {
     return this.movings.length == 0 && this.isLoadForm == false;
+  }
+
+  isMoving(movementType: MovementType) {
+    return movementType === MovementType.Moving;
+  }
+  isExpense(movementType: MovementType) {
+    return movementType === MovementType.Expense;
+  }
+  isIncome(movementType: MovementType) {
+    return movementType === MovementType.Income;
   }
 
   async getMovings(skipCount = 0, takeCount = 20): Promise<void> {

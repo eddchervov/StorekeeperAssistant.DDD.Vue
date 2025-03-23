@@ -21,27 +21,18 @@ public sealed class CreateExpenseCommand : ICommand<Guid>
     public required IEnumerable<AddInventoryItemDto> InventoryItems { get; set; }
 }
 
-public sealed class CreateExpenseCommandHandler : IRequestHandler<CreateExpenseCommand, Guid>
+public sealed class CreateExpenseCommandHandler(
+    IMovingRepository movingRepository,
+    IWarehouseRepository warehouseRepository,
+    IWarehouseInventoryItemRepository warehouseInventoryItemRepository,
+    IInventoryItemRepository inventoryItemRepository,
+    WarehouseInventoryItemService warehouseInventoryItemService) : IRequestHandler<CreateExpenseCommand, Guid>
 {
-    private readonly IMovingRepository _movingRepository;
-    private readonly IWarehouseRepository _warehouseRepository;
-    private readonly IWarehouseInventoryItemRepository _warehouseInventoryItemRepository;
-    private readonly IInventoryItemRepository _inventoryItemRepository;
-    private readonly WarehouseInventoryItemService _warehouseInventoryItemService;
-
-    public CreateExpenseCommandHandler(
-        IMovingRepository movingRepository,
-        IWarehouseRepository warehouseRepository,
-        IWarehouseInventoryItemRepository warehouseInventoryItemRepository,
-        IInventoryItemRepository inventoryItemRepository,
-        WarehouseInventoryItemService warehouseInventoryItemService)
-    {
-        _movingRepository = movingRepository;
-        _warehouseRepository = warehouseRepository;
-        _warehouseInventoryItemRepository = warehouseInventoryItemRepository;
-        _inventoryItemRepository = inventoryItemRepository;
-        _warehouseInventoryItemService = warehouseInventoryItemService;
-    }
+    private readonly IMovingRepository _movingRepository = movingRepository;
+    private readonly IWarehouseRepository _warehouseRepository = warehouseRepository;
+    private readonly IWarehouseInventoryItemRepository _warehouseInventoryItemRepository = warehouseInventoryItemRepository;
+    private readonly IInventoryItemRepository _inventoryItemRepository = inventoryItemRepository;
+    private readonly WarehouseInventoryItemService _warehouseInventoryItemService = warehouseInventoryItemService;
 
     public async Task<Guid> Handle(CreateExpenseCommand request, CancellationToken cancellationToken)
     {
