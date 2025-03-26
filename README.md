@@ -24,7 +24,7 @@
 </p>
 <ul>
   <li>.NET 9.0.</li>
-  <li><b>Server: </b> Web Api (DDD, CQRS, REST API).</li>
+  <li><b>Server: </b> Web Api (DDD, CQS, REST API).</li>
   <li><b>Client: </b> Vue 2 + Babel + TypeScript + Router + Vuex + Eslink + доп. библиотеки
     (<a target="_blank" href="https://github.com/sagalbot/vue-select">vue-select</a>, 
     <a target="_blank" href="https://github.com/chronotruck/vue-ctk-date-time-picker">vue-ctk-date-time-picker</a>,
