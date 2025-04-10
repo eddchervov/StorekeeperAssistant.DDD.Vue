@@ -36,9 +36,13 @@ public class UtilityController : ControllerBase
         _inventoryItemRepository = inventoryItemRepository;
     }
 
+    private static readonly int _maxCountOperations = 1000;
+
     [HttpPost("random-data-filling")]
     public async Task RandomDataFilling(int countOperations)
     {
+        if (countOperations > _maxCountOperations) return;
+
         var random = new Random();
 
         var warehouses = await _warehouseRepository.GetAll();
