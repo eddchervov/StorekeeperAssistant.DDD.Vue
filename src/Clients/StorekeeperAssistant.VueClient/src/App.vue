@@ -1,12 +1,6 @@
 <template>
   <div id="app">
     <NotificationToasts />
-
-    <div class="container">
-      <h5 class="mb-3 mt-1">
-        <a href="http://eddcher.ru/">Вернуться на eddcher.ru</a>
-      </h5>
-    </div>
     <nav
       id="nav"
       class="navbar navbar-expand-lg navbar-light bg-light py-2 mb-4"
@@ -58,7 +52,7 @@
 
     <footer class="border-top footer text-muted mt-4">
       <div class="container">
-        © 2022 - Помощник кладовщика
+        © 2022 / {{$store.state.currentYear}} - Помощник кладовщика
         <p>
           GitHub:
           <a

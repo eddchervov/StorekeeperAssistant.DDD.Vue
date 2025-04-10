@@ -21,6 +21,7 @@ import {
 import mutations from "./mutations";
 import { CreateIncomeDto } from "@/models/dto/create-income-dto";
 import { CreateExpenseDto } from "@/models/dto/create-expense-dto";
+import moment from "moment";
 
 Vue.use(Vuex);
 
@@ -59,6 +60,8 @@ export default new Vuex.Store({
       { id: 2, name: "Расход" },
       { id: 3, name: "Перемещение" },
     ] as Array<OptionsDto>,
+
+    currentYear: moment().format('YYYY')
   },
   getters: {
     isCreateMoving: (state) => state.isCreateMoving as boolean,
