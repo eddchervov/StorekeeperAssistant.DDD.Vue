@@ -48,7 +48,8 @@ public sealed class GetMovingsQueryHandler(ISqlConnectionFactory sqlConnectionFa
                 LEFT JOIN [dbo].[Warehouses]      AS dw ON m.DepartureWarehouseId = dw.Id 
                 LEFT JOIN [dbo].[Warehouses]      AS aw ON m.ArrivalWarehouseId = aw.Id 
                 LEFT JOIN [dbo].[MovingDetails]   AS md ON m.Id = md.MovingId 
-                LEFT JOIN [dbo].[InventoryItems]  AS ii ON md.InventoryItemId = ii.Id ",
+                LEFT JOIN [dbo].[InventoryItems]  AS ii ON md.InventoryItemId = ii.Id
+                ORDER BY m.[TransferDate] DESC ",
             param: new
             {
                 IsDeleted = false,
