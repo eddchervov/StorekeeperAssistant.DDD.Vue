@@ -41,6 +41,8 @@ public class Startup(IConfiguration configuration)
                     .AllowAnyHeader());
         });
 
+        services.AddMemoryCache();
+
         services.AddScoped<ISqlConnectionFactory>(x => new SqlConnectionFactory(Configuration[ConfigurationKey]!));
         
         services.AddDbContext<AppDbContext>(options =>
